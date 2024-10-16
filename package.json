@@ -4,7 +4,7 @@
   "description": "clothing website",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "nodemon backend/index.js",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "build": "npm install",
     "start": "NODE_ENV=production node index.js"

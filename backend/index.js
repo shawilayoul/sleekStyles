@@ -14,6 +14,11 @@ const bucket = require("./config/firebase.js");
 // mongo db connect function
 dbconnect();
 
+
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
 // Configure CORS
 const corsOptions = {
   origin: "https://sleekstyle.onrender.com", // Replace with your frontend URL
@@ -93,36 +98,6 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
   }
 });
 
-// updating products
-/*app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
-  const relativeFilePath = `uploads/${req.file.filename}`;
-  try {
-    const productId = req.params._id;
-    const updateProduct = {
-      productName: req.body.productName,
-      image: relativeFilePath,
-      price: req.body.price,
-      description: req.body.description,
-      category: req.body.category,
-    };
-
-    const result = await Product.findByIdAndUpdate(productId, updateProduct, {
-      new: true,
-    });
-
-    if (!result) {
-      return res.status(404).json({ message: "product not found" });
-    }
-
-    res.status(200).json({
-      message: "product has been updated successfully",
-      product: result,
-    });
-  } catch (error) {
-    console.error("Error updating product:", error);
-    res.status(500).json({ message: "Error updating product" });
-  }
-});*/
 app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
   const productId = req.params._id;
   const { productName, description, price, quantity, category } = req.body;
@@ -201,6 +176,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/create-checkout", require("./routes/stripeRoute.js"));
 app.use("/api/products", require("./routes/productsRoute.js"));
 app.use("/api/auth", require("./routes/authRoute.js"));
+
+ 
+// All other GET requests not handled before will return the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

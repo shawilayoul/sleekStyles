@@ -8,7 +8,7 @@ const ChiffreSection = () => {
         { value: "92%", description: "Natural Ingredients" },
       ].map((milestone) => (
         <div className="features-item text-center mb-8" key={milestone.value}>
-          <h4 className="text-5xl font-bold text-green-500">
+          <h4 className="text-2xl md:text-3xl font-bold text-green-500">
             {milestone.value}
           </h4>
           <p className="text-gray-600">{milestone.description}</p>

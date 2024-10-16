@@ -16,7 +16,7 @@ const Products = () => {
 
   return (
     <>
-      <h3 className="title text-3xl font-bold text-center my-6 text-gray-800">
+      <h3 className="title text-2xl md:text-3xl font-bold text-center my-6 text-gray-800">
         Our Products
       </h3>
       <section className="products">

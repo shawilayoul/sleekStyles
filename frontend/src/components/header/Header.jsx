@@ -298,7 +298,7 @@ const Header = () => {
         <ul className="md:hidden bg-gray-400">
           {menu.map(({ id, name, link }) => (
             <li key={id} className="block px-4 py-2 text-sm hover:bg-blue-700">
-              <Link to={link} className="link">
+              <Link to={link} className="link" onClick={()=>setIsOpen(!isOpen)}>
                 {name}
               </Link>
             </li>

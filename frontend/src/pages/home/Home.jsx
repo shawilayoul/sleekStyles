@@ -39,14 +39,14 @@ const Home = () => {
 
                   {/* Middle Text Content */}
                   <div className="middle w-full md:w-2/4 text-center px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
                       {title}
                     </h2>
-                    <p className="text-lg text-gray-600">{description}</p>
+                    <p className="text-xsm md:text-lg text-gray-600">{description}</p>
                   </div>
 
                   {/* Right Image */}
-                  <div className="right w-full md:w-1/4 flex justify-center mt-6 md:mt-0">
+                  <div className="right hidden w-full md:w-1/4 md:flex justify-center mt-6 md:mt-0">
                     <img
                       className="w-3/4 md:w-full rounded-lg object-cover"
                       src={imageRight}
