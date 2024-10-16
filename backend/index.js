@@ -15,10 +15,6 @@ const bucket = require("./config/firebase.js");
 dbconnect();
 
 
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-
 // Configure CORS
 const corsOptions = {
   origin: "https://sleekstyle.onrender.com", // Replace with your frontend URL
@@ -169,7 +165,6 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
   }
 });
 
-
 // Serve static files from 'uploads' directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -177,10 +172,11 @@ app.use("/create-checkout", require("./routes/stripeRoute.js"));
 app.use("/api/products", require("./routes/productsRoute.js"));
 app.use("/api/auth", require("./routes/authRoute.js"));
 
- 
 // All other GET requests not handled before will return the React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
 
 app.listen(port, () => {
