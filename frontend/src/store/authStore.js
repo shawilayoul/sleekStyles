@@ -1,6 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
-const apiUrl = "https://sleekbackendexpress.onrender.com/api/auth";
+const apiUrl = "https://sleekstyles.onrender.com/api/auth";
 
 const useAuthStore = create((set) => ({
   user: null,

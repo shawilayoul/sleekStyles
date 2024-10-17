@@ -9,7 +9,7 @@ const useProductStore = create((set) => ({
   addProduct: async (products) => {
     set({ isloading: true, error: null });
     try {
-      const response = await axios.post(`https://sleekbackendexpress.onrender.com/uploads`, products,{
+      const response = await axios.post(`https://sleekstyles.onrender.com/uploads`, products,{
         headers: {
             'Content-Type': 'multipart/form-data'
         }});
@@ -26,7 +26,7 @@ const useProductStore = create((set) => ({
   editProduct: async (productId,products) => {
     set({ isloading: true, error: null });
     try {
-      const response = await axios.put(`https://sleekbackendexpress.onrender.com/uploads/${productId}`, products,{
+      const response = await axios.put(`https://sleekstyles.onrender.com/uploads/${productId}`, products,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },});
@@ -44,7 +44,7 @@ const useProductStore = create((set) => ({
   getProducts: async () => {
     set({ isloading: true, error: null });
     try {
-      const response = await axios.get("https://sleekbackendexpress.onrender.com/api/products");
+      const response = await axios.get("https://sleekstyles.onrender.com/api/products");
       set({ product: response.data, isloading: false });
     } catch (error) {
       set({

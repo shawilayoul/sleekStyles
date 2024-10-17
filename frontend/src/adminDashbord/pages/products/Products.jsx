@@ -25,7 +25,7 @@ const Products = () => {
   const handleDelete = async (productId) => {
     try {
       await axios.delete(
-        `https://sleekbackendexpress.onrender.com/api/products/${productId}`
+        `https://sleekstyles.onrender.com/api/products/${productId}`
       );
       product.filter((product) => product._id !== productId); // Update UI after deletion
       await getProducts();

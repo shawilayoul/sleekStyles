@@ -160,7 +160,7 @@ const forgotPassword = async (req, res) => {
 
   await sendresetPasswordEmail(
     user.email,
-    `http://localhost:5173/resetpassword/${restToken}`
+    `https://sleekstyles.onrender.com/resetpassword/${restToken}`
   );
 
   res.status(200).json("password reset link send to your email ");

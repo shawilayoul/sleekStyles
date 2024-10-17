@@ -26,7 +26,7 @@ const EditProduct = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `https://sleekbackendexpress.onrender.com/api/products/${productId}`
+          `https://sleekstyles.onrender.com//api/products/${productId}`
         );
         const product = response.data;
         setProductName(product.productName);
@@ -61,7 +61,7 @@ const EditProduct = () => {
     try {
       // Send updated product data to the backend
       const response = await axios.put(
-        `https://sleekbackendexpress.onrender.com/uploads/${productId}`,
+        `https://sleekstyles.onrender.com/uploads/${productId}`,
         formData
       );
       if (response.status === 200) {
