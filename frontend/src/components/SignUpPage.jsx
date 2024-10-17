@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import toast from "react-hot-toast";
@@ -23,6 +23,18 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signUp(formData.username, formData.email, formData.password);
+    if (error) {
+      if (error === "Error sending verification email") {
+          toast.success("Your Account has been created successfully");
+          navigate("/signin");
+      } else {
+          toast.error("An unexpected error occurred. Please try again.");
+      }
+  } else {
+      // If no error, navigate to sign-in after successful sign-up
+      toast.success("Verification email has been sent to your email verify it");
+      navigate("/verifyEmail");
+  }
     // Reset form data
     setFormData({
       username: "",
@@ -30,22 +42,6 @@ const SignUpPage = () => {
       password: "",
     });
   };
-
-
-  useEffect(() => {
-    if (error) {
-        if (error === "Error sending verification email") {
-            toast.success("Your Account has been created successfully");
-            navigate("/signin");
-        } else {
-            toast.error("An unexpected error occurred. Please try again.");
-        }
-    } else {
-        // If no error, navigate to sign-in after successful sign-up
-        toast.success("Verification email has been sent to your email verify it");
-        navigate("/verifyEmail");
-    }
-}, [error, navigate]);
 
   return (
     <div className="flex justify-center items-center p-10 h-[100%] bg-gray-100">
