@@ -12,12 +12,20 @@ const ProductDetails = () => {
 
     const navigate =useNavigate()
 
+  //loading spinner
+  const LoadingSpinner = () => {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  };
   // Fetch product details from the backend
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `https://sleekbackendexpress.onrender.com/api/products/${id}`
+          `https://sleekstyles.onrender.com/api/products/${id}`
         );
         setProduct(response.data);
       } catch (error) {
@@ -29,7 +37,7 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>;
   }
 
   return (

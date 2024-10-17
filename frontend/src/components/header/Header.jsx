@@ -280,7 +280,10 @@ const Header = () => {
                       <button
                         type="submit"
                         className="w-1/2 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-                        onClick={()=>navigate('/checkout-success')}
+                        onClick={()=>setTimeout(() => {
+                          navigate('/checkout-success')
+                        }, 3000)   
+                         }
                       >
                         Pay Now
                       </button>

@@ -52,7 +52,7 @@ const Shop = () => {
                     </div>
 
                     {/* Right Image */}
-                    <div className="right w-full md:w-1/3 flex justify-center mt-6 md:mt-0">
+                    <div className="right hidden w-full md:w-1/3 md:flex justify-center mt-6 md:mt-0">
                       <img
                         className="w-3/4 md:w-full object-cover rounded-lg"
                         src={image}
@@ -87,9 +87,9 @@ const Shop = () => {
 
           {/* Colors */}
           <div className="color mt-8">
-            <h3 className="text-2xl font-semibold mb-4">Colors</h3>
+            <h3 className="text-xlmd:text-2xl font-semibold mb-4">Colors</h3>
             <div className="color-items flex gap-2">
-              {["white", "red", "yellow", "black", "blue", "green"].map((color) => (
+              {["white", "red",  "blue", "green"].map((color) => (
                 <button
                   key={color}
                   className={`w-8 h-8 rounded-full bg-${color}-500 border`}
@@ -100,7 +100,7 @@ const Shop = () => {
 
           {/* Price Filter */}
           <div className="price-filter mt-8">
-            <h3 className="text-2xl font-semibold mb-4">Filter by Price: ${priceRate}</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Filter by Price: ${priceRate}</h3>
             <input
               type="range"
               step={10}
