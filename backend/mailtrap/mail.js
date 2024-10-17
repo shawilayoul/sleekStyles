@@ -39,7 +39,7 @@ const sendWelcomeEmail = async (email, username) => {
       to: recipient,
       template_uuid: "3c4b89be-db06-4707-a693-68268e34c506",
       template_variables: {
-        company_info_name: "Shawil Tech",
+        company_info_name: "Sleek style",
         name: username,
       },
     });

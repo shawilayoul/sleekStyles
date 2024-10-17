@@ -16,7 +16,7 @@ export const homeSlideData = [
     description:
       "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
     imgageLeft: images.tshirt3,
-    imageRight: images.suit2,
+    imageRight: images.suit3,
   },
   {
     id: 3,
@@ -32,14 +32,14 @@ export const homeSlideData = [
     description:
       "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
     imgageLeft: images.tshirt3,
-    imageRight: images.suit2,
+    imageRight: images.suit3,
   },
   {
     id: 5,
     title: "The hidden gems in fashion trends",
     description:
       "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    imgageLeft: images.tshirt1,
+    imgageLeft: images.tshirt4,
     imageRight: images.suit4,
   },
 ];
@@ -176,54 +176,5 @@ export const PopularProductData = [
     name: "product men",
     price: "100",
     sold:412
-  },/*
-  {
-    id: 9,
-    image: images.girl3,
-    name: "product women",
-    price: "100",
-    sold:412
   },
-  {
-    id: 10,
-    image: images.kid5,
-    name: "product kids",
-    price: "70",
-    sold:854
-  },
-  {
-    id: 11,
-    image: images.kid2,
-    name: "product kids",
-    price: "40",
-    sold:1854
-  },
-  {
-    id: 12,
-    image: images.girl9,
-    name: "product women",
-    price: "80",
-    sold:317
-  },
-  {
-    id: 13,
-    image: images.boy11,
-    name: "product men",
-    price: "70",
-    sold:7856
-  },
-  {
-    id: 14,
-    image: images.boy1,
-    name: "product men",
-    price: "70",
-    sold:7453
-  },
-  {
-    id: 15,
-    image: images.girl6,
-    name: "product women",
-    price: "100",
-    sold:732
-  },*/
 ];

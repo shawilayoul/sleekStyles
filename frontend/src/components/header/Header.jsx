@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import sleekImage from "../../assets/images/styles.png";
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -95,7 +95,7 @@ const Header = () => {
           {/* Logo Section */}
           <div className="hidden flex-shrink-0 md:flex items-center">
             <a href="/" className="md:text-2xl font-bold text-xl">
-              <img src={sleekImage} alt="logo" className="w-12" />
+             SleekStyles
             </a>
           </div>
           {/* Mobile Menu Button */}
@@ -286,6 +286,7 @@ const Header = () => {
                         onClick={() =>
                           setTimeout(() => {
                             navigate("/checkout-success");
+                            setCheckoutModel(!checkOutModel)
                           }, 3000)
                         }
                       >

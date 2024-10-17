@@ -1,12 +1,13 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { FaRegMoon, FaRegUser } from "react-icons/fa";
 import useAuthStore from "../../store/authStore";
-import { useState } from "react";
+import { useState,useNavigate } from "react";
 
 const NavBar = () => {
-  const { user } = useAuthStore();
+  const { user, logOut } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
-
+  
+  const navigate = useNavigate()
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -77,7 +78,7 @@ const NavBar = () => {
                       <p>admin</p>
                     )}
                   </span>
-                  <FaRegUser/>
+                  <FaRegUser />
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -112,6 +113,10 @@ const NavBar = () => {
                     <a
                       href="#"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => {
+                        logOut();
+                        navigate('/')
+                      }}
                     >
                       Logout
                     </a>
