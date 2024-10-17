@@ -1,7 +1,8 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { FaRegMoon, FaRegUser } from "react-icons/fa";
 import useAuthStore from "../../store/authStore";
-import { useState,useNavigate } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const { user, logOut } = useAuthStore();
