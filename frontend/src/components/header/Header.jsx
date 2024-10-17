@@ -7,10 +7,9 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
 import {  useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
-
+import sleekImage  from "../../assets/images/styles.png"
 const Header = () => {
   const [cartModel, setCartModel] = useState(false);
-  const [checkOutModel, setCheckoutModel] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,6 +23,8 @@ const Header = () => {
     deleteFromCart,
     addOneToCart,
     removerOneFromCart,
+    checkOutModel,
+     setCheckoutModel
   } = useContext(ProductsContext);
 
   // get the total qauntity
@@ -93,8 +94,8 @@ const Header = () => {
         <div className="flex justify-between  h-16">
           {/* Logo Section */}
           <div className="hidden flex-shrink-0 md:flex items-center">
-            <a href="#" className="md:text-2xl font-bold text-xl">
-              SleekStyle
+            <a href="/" className="md:text-2xl font-bold text-xl">
+              <img src={sleekImage} alt="logo" className="w-12"/>
             </a>
           </div>
           {/* Mobile Menu Button */}

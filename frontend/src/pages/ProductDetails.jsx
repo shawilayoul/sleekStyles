@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ProductsContext } from "../context/ProductContext";
 
@@ -7,10 +7,8 @@ const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
 
-  const { addOneToCart } =
+  const { addOneToCart, checkOutModel, setCheckoutModel } =
     useContext(ProductsContext);
-
-    const navigate =useNavigate()
 
   //loading spinner
   const LoadingSpinner = () => {
@@ -37,7 +35,7 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -62,12 +60,22 @@ const ProductDetails = () => {
           <div className="flex space-x-4 mb-6">
             <button
               className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
-              onClick={() => addOneToCart(id, product.productName, product.price, product.image)}
+              onClick={() =>
+                addOneToCart(
+                  id,
+                  product.productName,
+                  product.price,
+                  product.image
+                )
+              }
             >
               Add to Cart
             </button>
-            <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700" onClick={()=>navigate("")}>
-              Buy Now
+            <button
+              className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700"
+              onClick={() => setCheckoutModel(!checkOutModel)}
+            >
+              CheckOut
             </button>
           </div>
 
