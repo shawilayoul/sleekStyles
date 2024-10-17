@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    background-color: var(--main-white);
+}
+:root{
+    --main-white: #ffffff;
+    --header-backGround:#023047;
+    --main-blue:#023047;
+    --home-background:#dee2e6;
+    --main-red: #ef0827;
+    --main-black:#000;
+    --main-gray: #303841;
+}
+
+h1,h2,h3,h4{
+    margin: 0;
+    padding: 0;
+}
