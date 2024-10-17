@@ -16,6 +16,7 @@ const ProductContextProvider = ({ children }) => {
   const [filterValue, setFilterValue] = useState("");
 
   const [checkOutModel, setCheckoutModel] = useState(false);
+  const [cartModel, setCartModel] = useState(false);
   //geting products from the store
   const { product, getProducts } = useProductStore();
 
@@ -132,7 +133,9 @@ const ProductContextProvider = ({ children }) => {
     deleteFromCart,
     removerOneFromCart,
     checkOutModel, 
-    setCheckoutModel
+    setCheckoutModel,
+    cartModel,
+     setCartModel
   };
   return (
     <ProductsContext.Provider value={contextValue}>

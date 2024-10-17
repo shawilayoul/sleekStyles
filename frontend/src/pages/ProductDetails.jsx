@@ -7,7 +7,7 @@ const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
 
-  const { addOneToCart, checkOutModel, setCheckoutModel } =
+  const { addOneToCart, cartModel, setCartModel} =
     useContext(ProductsContext);
 
   //loading spinner
@@ -73,9 +73,9 @@ const ProductDetails = () => {
             </button>
             <button
               className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700"
-              onClick={() => setCheckoutModel(!checkOutModel)}
+              onClick={() => setCartModel(!cartModel)}
             >
-              CheckOut
+              Pay Now
             </button>
           </div>
 

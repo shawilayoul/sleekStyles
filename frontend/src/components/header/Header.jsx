@@ -5,12 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaSearch } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
-import {  useStripe, useElements } from "@stripe/react-stripe-js";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import sleekImage  from "../../assets/images/styles.png"
+import sleekImage from "../../assets/images/styles.png";
 const Header = () => {
-  const [cartModel, setCartModel] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +22,9 @@ const Header = () => {
     addOneToCart,
     removerOneFromCart,
     checkOutModel,
-     setCheckoutModel
+    setCheckoutModel,
+    cartModel,
+    setCartModel,
   } = useContext(ProductsContext);
 
   // get the total qauntity
@@ -95,7 +95,7 @@ const Header = () => {
           {/* Logo Section */}
           <div className="hidden flex-shrink-0 md:flex items-center">
             <a href="/" className="md:text-2xl font-bold text-xl">
-              <img src={sleekImage} alt="logo" className="w-12"/>
+              <img src={sleekImage} alt="logo" className="w-12" />
             </a>
           </div>
           {/* Mobile Menu Button */}
@@ -244,18 +244,19 @@ const Header = () => {
                       <input
                         type="email"
                         placeholder="Enter your Email"
-                        className="w-full p-2 border border-gray-300 rounded-md"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
                       />
                     </div>
 
                     <div className="space-y-2">
                       <p className="font-bold">Card Information</p>
-                      <CardElement className="border p-2 rounded-md border-gray-300" />
+                      <CardElement className="border p-2 rounded-md border-gray-300"  required/>
                     </div>
 
                     <div className="space-y-2">
                       <p className="font-bold">Country or Region</p>
-                      <select className="w-full p-2 border border-gray-300 text-gray-700 rounded-md">
+                      <select className="w-full p-2 border border-gray-300 text-gray-700 rounded-md" required>
                         <option value="United States">United States</option>
                         <option value="United States">France</option>
                         <option value="United States">Spain</option>
@@ -268,6 +269,7 @@ const Header = () => {
                         type="text"
                         placeholder="Postal code"
                         className="w-full p-2 border border-gray-300  text-gray-700 rounded-md"
+                        required
                       />
                     </div>
 
@@ -281,10 +283,11 @@ const Header = () => {
                       <button
                         type="submit"
                         className="w-1/2 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-                        onClick={()=>setTimeout(() => {
-                          navigate('/checkout-success')
-                        }, 3000)   
-                         }
+                        onClick={() =>
+                          setTimeout(() => {
+                            navigate("/checkout-success");
+                          }, 3000)
+                        }
                       >
                         Pay Now
                       </button>
@@ -302,7 +305,11 @@ const Header = () => {
         <ul className="md:hidden bg-gray-400">
           {menu.map(({ id, name, link }) => (
             <li key={id} className="block px-4 py-2 text-sm hover:bg-blue-700">
-              <Link to={link} className="link" onClick={()=>setIsOpen(!isOpen)}>
+              <Link
+                to={link}
+                className="link"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 {name}
               </Link>
             </li>
