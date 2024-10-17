@@ -4,12 +4,9 @@
   "description": "clothing website",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon backend/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon backend/index.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "node backend/index.js"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "start": "cross-env NODE_ENV=production node backend/index.js"
   },
   "author": "Aochol",
   "license": "ISC",
@@ -32,5 +29,8 @@
     "nodemon": "^3.1.4",
     "path": "^0.12.7",
     "stripe": "^16.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

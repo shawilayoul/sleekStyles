@@ -14,20 +14,8 @@ const bucket = require("./config/firebase.js");
 // mongo db connect function
 dbconnect();
 
-
-// Configure CORS
-const corsOptions = {
-  origin: "https://sleekstyle.onrender.com", // Replace with your frontend URL
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Enable cookies and authorization headers
-  optionsSuccessStatus: 204, // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-app.use(cors(corsOptions));
 // Set up Multer for file upload
 const upload = multer({ storage: multer.memoryStorage() });
-
-app.use(cors({ origin: "https://sleekstyle.onrender.com", credentials: true }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -38,9 +26,6 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the backend API");
-});
 
 app.post("/uploads", upload.single("image"), async (req, res) => {
   const { productName, description, price, quantity, category } = req.body;
@@ -173,11 +158,14 @@ app.use("/api/products", require("./routes/productsRoute.js"));
 app.use("/api/auth", require("./routes/authRoute.js"));
 
 // All other GET requests not handled before will return the React app
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-});
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  });
+}
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
