@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const { signUp, error } = useAuthStore();
- 
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -22,10 +23,13 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signUp(formData.username, formData.email, formData.password);
-    if(!error){
-    navigate("/verifyEmail");
-    }else{
-      navigate('/signin')
+    if (!error) {
+      navigate("/verifyEmail");
+    } else {
+      setTimeout(() => {
+        navigate("/signin");
+      }, 3000);
+      toast.success("Your Account has been created successfully");
     }
     // Reset form data
     setFormData({
@@ -95,8 +99,6 @@ const SignUpPage = () => {
               required
             />
           </div>
-          <div>{error && <p className="text-red-400">{error}</p>}</div>
-
           {/* Submit Button */}
           <div>
             <button
@@ -107,6 +109,11 @@ const SignUpPage = () => {
             </button>
           </div>
         </form>
+        <div>
+          {error !== "Error sending verification email" && (
+            <p className="text-red-400">{error}</p>
+          )}
+        </div>
         <div className="space-y-4" onClick={() => navigate("/signin")}>
           <p className="w-full py-2  text-blue-600 cursor-pointer">
             {" "}

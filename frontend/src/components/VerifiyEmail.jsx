@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuthStore from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const VerifiyEmail = () => {
   const [verificationCode, setVerificationCode] = useState("");
@@ -20,7 +21,7 @@ const VerifiyEmail = () => {
       await verifyEmail(verificationCode);
       navigate('/signin')
     } else {
-      alert("Please enter a 6-digit code.");
+      toast.success("Please enter a 6-digit code.");
     }
   };
   return (
