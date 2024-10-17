@@ -23,13 +23,11 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signUp(formData.username, formData.email, formData.password);
-    if (!error) {
-      navigate("/verifyEmail");
-    } else {
-      setTimeout(() => {
-        navigate("/signin");
-      }, 3000);
+    if (error === "Error sending verification email") {
       toast.success("Your Account has been created successfully");
+      navigate("/signin");
+    } else {
+      navigate("/verifyEmail");
     }
     // Reset form data
     setFormData({
@@ -99,6 +97,11 @@ const SignUpPage = () => {
               required
             />
           </div>
+          <div>
+            {error !== "Error sending verification email" && (
+              <p className="text-red-400">{error}</p>
+            )}
+          </div>
           {/* Submit Button */}
           <div>
             <button
@@ -109,11 +112,7 @@ const SignUpPage = () => {
             </button>
           </div>
         </form>
-        <div>
-          {error !== "Error sending verification email" && (
-            <p className="text-red-400">{error}</p>
-          )}
-        </div>
+
         <div className="space-y-4" onClick={() => navigate("/signin")}>
           <p className="w-full py-2  text-blue-600 cursor-pointer">
             {" "}
