@@ -22,7 +22,11 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signUp(formData.username, formData.email, formData.password);
+    if(!error){
     navigate("/verifyEmail");
+    }else{
+      navigate('/signin')
+    }
     // Reset form data
     setFormData({
       username: "",
