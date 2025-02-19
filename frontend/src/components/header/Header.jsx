@@ -93,13 +93,8 @@ const Header = () => {
         <div className="flex justify-between  h-16">
           {/* Logo Section */}
           <div className="hidden flex-shrink-0 md:flex items-center">
-<<<<<<< HEAD
             <a href="/" className="md:text-2xl font-bold text-xl">
              SleekStyles
-=======
-            <a href="#" className="md:text-2xl font-bold text-xl">
-              SleekStyle
->>>>>>> main
             </a>
           </div>
           {/* Mobile Menu Button */}
@@ -248,31 +243,19 @@ const Header = () => {
                       <input
                         type="email"
                         placeholder="Enter your Email"
-<<<<<<< HEAD
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
                         required
-=======
-                        className="w-full p-2 border border-gray-300 rounded-md"
->>>>>>> main
                       />
                     </div>
 
                     <div className="space-y-2">
                       <p className="font-bold">Card Information</p>
-<<<<<<< HEAD
                       <CardElement className="border p-2 rounded-md border-gray-300"  required/>
-=======
-                      <CardElement className="border p-2 rounded-md border-gray-300" />
->>>>>>> main
                     </div>
 
                     <div className="space-y-2">
                       <p className="font-bold">Country or Region</p>
-<<<<<<< HEAD
                       <select className="w-full p-2 border border-gray-300 text-gray-700 rounded-md" required>
-=======
-                      <select className="w-full p-2 border border-gray-300 text-gray-700 rounded-md">
->>>>>>> main
                         <option value="United States">United States</option>
                         <option value="United States">France</option>
                         <option value="United States">Spain</option>
@@ -285,10 +268,7 @@ const Header = () => {
                         type="text"
                         placeholder="Postal code"
                         className="w-full p-2 border border-gray-300  text-gray-700 rounded-md"
-<<<<<<< HEAD
                         required
-=======
->>>>>>> main
                       />
                     </div>
 
@@ -302,16 +282,12 @@ const Header = () => {
                       <button
                         type="submit"
                         className="w-1/2 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-<<<<<<< HEAD
                         onClick={() =>
                           setTimeout(() => {
                             navigate("/checkout-success");
                             setCheckoutModel(!checkOutModel)
                           }, 3000)
                         }
-=======
-                        onClick={()=>navigate('/checkout-success')}
->>>>>>> main
                       >
                         Pay Now
                       </button>
@@ -329,15 +305,11 @@ const Header = () => {
         <ul className="md:hidden bg-gray-400">
           {menu.map(({ id, name, link }) => (
             <li key={id} className="block px-4 py-2 text-sm hover:bg-blue-700">
-<<<<<<< HEAD
               <Link
                 to={link}
                 className="link"
                 onClick={() => setIsOpen(!isOpen)}
               >
-=======
-              <Link to={link} className="link" onClick={()=>setIsOpen(!isOpen)}>
->>>>>>> main
                 {name}
               </Link>
             </li>
