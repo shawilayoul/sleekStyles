@@ -7,11 +7,16 @@ const ChiffreSection = () => {
         { value: "16", description: "Quality Products" },
         { value: "92%", description: "Natural Ingredients" },
       ].map((milestone) => (
-        <div className="features-item text-center mb-8" key={milestone.value}>
-          <h4 className="text-2xl md:text-3xl font-bold text-green-500">
+        <div
+          className="features-item text-center mb-8 w-1/2 md:w-auto"
+          key={milestone.value}
+        >
+          <h4 className="text-3xl md:text-5xl font-bold text-green-500">
             {milestone.value}
           </h4>
-          <p className="text-gray-600">{milestone.description}</p>
+          <p className="text-gray-600 text-sm md:text-base">
+            {milestone.description}
+          </p>
         </div>
       ))}
     </section>

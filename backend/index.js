@@ -20,12 +20,18 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("common"));
-app.use(bodyParser.json({ limit: "16mb", extended: true })); // Make sure you add these two lines
+app.use(bodyParser.json({ limit: "16mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "16mb", extended: true }));
 app.use(cookieParser());
-
 app.use(express.json());
 
+// Middleware to set correct MIME type for .jsx files
+app.use((req, res, next) => {
+  if (req.url.endsWith('.jsx')) {
+    res.setHeader('Content-Type', 'application/javascript');
+  }
+  next();
+});
 
 app.post("/uploads", upload.single("image"), async (req, res) => {
   const { productName, description, price, quantity, category } = req.body;
@@ -34,11 +40,9 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
       return res.status(400).send("No file uploaded");
     }
 
-    // Create a reference to the Firebase storage file
     const fileName = Date.now() + req.file.originalname;
     const blob = bucket.file(fileName);
 
-    // Create a write stream to upload the image to Firebase
     const blobStream = blob.createWriteStream({
       metadata: {
         contentType: req.file.mimetype,

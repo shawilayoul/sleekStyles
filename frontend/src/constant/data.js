@@ -4,42 +4,42 @@ import { images } from "../assets/images";
 export const homeSlideData = [
   {
     id: 1,
-    title: "The hidden gems in fashion trends",
+    title: "Casual Comfort: The Classic T-Shirt",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
+      "Experience ultimate comfort and effortless style with our premium cotton t-shirts, perfect for any occasion.",
     imgageLeft: images.tshirt1,
     imageRight: images.tshirt1,
   },
   {
     id: 2,
-    title: "The hidden gems in fashion trends",
+    title: "Bold & Vibrant: The Red Statement Tee",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    imgageLeft: images.tshirt3,
-    imageRight: images.suit3,
+      "Make a statement with our eye-catching red t-shirt—bold, confident, and designed for those who stand out.",
+    imgageLeft: images.tshirtRouge,
+    imageRight: images.tshirtRouge,
   },
   {
     id: 3,
-    title: "The hidden gems in fashion trends",
+    title: "Timeless Elegance: The Black Tee",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    imgageLeft: images.tshirt4,
-    imageRight: images.suit4,
+      "A wardrobe essential—our black t-shirt pairs seamlessly with any outfit, offering style and sophistication.",
+    imgageLeft: images.tshirtNoir,
+    imageRight: images.tshirtNoir,
   },
   {
     id: 4,
-    title: "The hidden gems in fashion trends",
+    title: "Sharp & Stylish: The Modern Suit",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    imgageLeft: images.tshirt3,
-    imageRight: images.suit3,
+      "Elevate your look with our finely tailored suit—perfect for formal occasions and business elegance.",
+    imgageLeft: images.suit2,
+    imageRight: images.suit2,
   },
   {
     id: 5,
-    title: "The hidden gems in fashion trends",
+    title: "The Power Suit: Confidence in Every Stitch",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    imgageLeft: images.tshirt4,
+      "Command attention with our premium suit—crafted for those who lead with style and authority.",
+    imgageLeft: images.suit4,
     imageRight: images.suit4,
   },
 ];
@@ -49,33 +49,34 @@ export const homeSlideData = [
 export const shopSlideDAta = [
   {
     id: 1,
-    title: "The hidden gems in fashion trends",
+    title: "Discover Timeless Style with Our Classic Tees",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
+      "Elevate your everyday look with our versatile t-shirt collection. Perfectly designed to offer comfort without compromising on style, these tees are your new wardrobe staple.",
     image: images.tshirt1,
   },
   {
     id: 2,
-    title: "The hidden gems in fashion trends",
+    title: "Bold and Modern: The Noir Collection",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    image: images.suit2,
+      "Make a statement with our sleek Noir t-shirt. Crafted for the bold and the daring, this piece combines minimalism with attitude, making it perfect for any occasion.",
+    image: images.tshirtNoir,
   },
   {
     id: 3,
-    title: "The hidden gems in fashion trends",
+    title: "Vibrant and Trendy: The Rouge Tee",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
-    image: images.tshirt5,
+      "Add a pop of color to your wardrobe with our Rouge t-shirt. Designed for those who want to stand out, this tee brings vibrant energy and unbeatable style to your day-to-day outfits.",
+    image: images.tshirtRouge,
   },
   {
     id: 4,
-    title: "The hidden gems in fashion trends",
+    title: "Effortless Elegance: The Sleek Tee",
     description:
-      "Step into the realm of unparalleled style with our unbeatablet-shirt trendsetter of today.",
+      "Simplicity meets sophistication in our Sleek t-shirt. With its clean lines and high-quality fabric, this tee offers both style and comfort for a look that’s effortlessly chic.",
     image: images.tshirt2,
   },
 ];
+
 /*** blog post data ***/
 
 export const blogPost = [
@@ -83,37 +84,37 @@ export const blogPost = [
     id: 1,
     image: images.bolg1,
     date: "20/10/2024",
-    title: "Sample post with featured image",
+    title: "Exploring the Latest Fashion Trends for Fall 2024",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est",
+      "As the weather cools down, fall fashion is making its comeback with bold, warm colors and layered outfits. In this post, we explore the top trends that are shaping the season and how to wear them to make a statement. From cozy knitwear to stylish outerwear, discover how to stay stylish this fall.",
   },
   {
     id: 2,
     image: images.bolg2,
     date: "20/10/2024",
-    title: "Sample post with featured image",
+    title: "How to Build a Capsule Wardrobe: A Guide for Minimalists",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio",
+      "A capsule wardrobe is a minimalist approach to fashion, where you only keep essential, versatile items that can be mixed and matched effortlessly. In this post, we’ll guide you through the process of building a capsule wardrobe and share tips on creating timeless looks with fewer pieces.",
   },
   {
     id: 3,
     image: images.bolg3,
     date: "20/10/2024",
-    title: "Sample post with featured image",
+    title: "The Art of Accessorizing: Elevating Your Outfits with Simple Pieces",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor",
+      "Accessories can make or break an outfit. In this post, we dive into the art of accessorizing, showcasing how the right accessories can elevate even the simplest of outfits. Whether it’s a statement necklace or a stylish scarf, discover how to add the perfect finishing touch to your wardrobe.",
   },
   {
     id: 4,
     image: images.bolg4,
     date: "20/10/2024",
-    title: "Sample post with featured image",
+    title: "Sustainable Fashion: How to Shop Ethically in 2024",
     author: "John",
     description:
-      "Fusce gravida interdum eros a mollis. Sed non lorem varius, volutpat nisl in, laoreet ant. Quisque suscipit mauris ipsum, eu mollis arcu laoreet vel. In posuere odio sed libero tincidunt commodo a vel ipsum. Mauris fringilla tellus aliquam, egestas sem in, malesuadanunc. Etiam condimentum felis odio, vel mollis est tempor non",
+      "Sustainable fashion is more than just a trend; it’s a movement towards reducing waste and supporting ethical brands. In this post, we discuss the importance of sustainable fashion and share practical tips on how to shop responsibly without compromising on style. Learn how to make a positive impact through your clothing choices.",
   },
 ];
 
@@ -176,5 +177,54 @@ export const PopularProductData = [
     name: "product men",
     price: "100",
     sold:412
+  },/*
+  {
+    id: 9,
+    image: images.girl3,
+    name: "product women",
+    price: "100",
+    sold:412
   },
+  {
+    id: 10,
+    image: images.kid5,
+    name: "product kids",
+    price: "70",
+    sold:854
+  },
+  {
+    id: 11,
+    image: images.kid2,
+    name: "product kids",
+    price: "40",
+    sold:1854
+  },
+  {
+    id: 12,
+    image: images.girl9,
+    name: "product women",
+    price: "80",
+    sold:317
+  },
+  {
+    id: 13,
+    image: images.boy11,
+    name: "product men",
+    price: "70",
+    sold:7856
+  },
+  {
+    id: 14,
+    image: images.boy1,
+    name: "product men",
+    price: "70",
+    sold:7453
+  },
+  {
+    id: 15,
+    image: images.girl6,
+    name: "product women",
+    price: "100",
+    sold:732
+  },*/
 ];

@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { blogPost } from "../../constant/data";
 import { images } from "../../assets/images";
+import {
+  FaFacebook,
+  FaInstagramSquare,
+  FaYoutube,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Blog = () => {
   const [showFullBlog, setShowFullBlog] = useState(false);
@@ -18,6 +24,8 @@ const Blog = () => {
     <div className="blog-container px-4 py-10">
       {/* Blog Header */}
       <div className="blog-top text-center mb-10">
+      <h2 className="md:text-4xl text-2xl font-bold text-gray-800 mb-6">Our Blogs</h2>
+
         <div className="w-full max-w-4xl mx-auto">
           <img
             className="w-full h-auto object-cover rounded-lg shadow-lg"
@@ -25,7 +33,6 @@ const Blog = () => {
             alt="Blog Banner"
           />
         </div>
-        <h2 className="text-4xl font-bold text-gray-800 mt-6">Our Blogs</h2>
       </div>
 
       {/* Blog Content */}
@@ -62,20 +69,74 @@ const Blog = () => {
         </div>
 
         {/* Sidebar Section */}
+        {/* Sidebar Section */}
         <div className="blog-right hidden md:block md:col-span-1 bg-white p-6 rounded-lg shadow-lg">
-          {/* Example Sidebar Content */}
+          {/* Popular Blogs */}
           <h3 className="text-xl font-semibold text-gray-800">Popular Blogs</h3>
           <ul className="mt-4 space-y-2">
-            <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
-              Blog Title 1
-            </li>
-            <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
-              Blog Title 2
-            </li>
-            <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
-              Blog Title 3
-            </li>
+            {blogPost.map((post) => (
+              <li
+                key={post.id}
+                className="text-gray-700 hover:text-blue-600 cursor-pointer"
+              >
+                {post.title}
+              </li>
+            ))}
           </ul>
+
+          {/* Categories */}
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold text-gray-800">Categories</h3>
+            <ul className="mt-4 space-y-2">
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                Fashion
+              </li>
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                Lifestyle
+              </li>
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                Sustainability
+              </li>
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                Trends
+              </li>
+            </ul>
+          </div>
+
+          {/* Archives */}
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold text-gray-800">Archives</h3>
+            <ul className="mt-4 space-y-2">
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                October 2024
+              </li>
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                September 2024
+              </li>
+              <li className="text-gray-700 hover:text-blue-600 cursor-pointer">
+                August 2024
+              </li>
+            </ul>
+          </div>
+
+          {/* Follow Us */}
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold text-gray-800">Follow Us</h3>
+            <div className="flex space-x-4 text-2xl mt-4">
+              <a href="#" className="text-gray-700 hover:text-blue-600">
+                <FaFacebook />
+              </a>
+              <a href="#" className="text-gray-700 hover:text-pink-500">
+                <FaInstagramSquare />
+              </a>
+              <a href="#" className="text-gray-700 hover:text-blue-400">
+                <FaTwitter />
+              </a>
+              <a href="#" className="text-gray-700 hover:text-red-600">
+                <FaYoutube />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

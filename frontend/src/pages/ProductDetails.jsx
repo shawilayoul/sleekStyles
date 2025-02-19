@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ProductsContext } from "../context/ProductContext";
 
@@ -7,17 +7,11 @@ const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
 
-  const { addOneToCart, cartModel, setCartModel} =
+  const { addOneToCart } =
     useContext(ProductsContext);
 
-  //loading spinner
-  const LoadingSpinner = () => {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-      </div>
-    );
-  };
+    const navigate =useNavigate()
+
   // Fetch product details from the backend
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -60,22 +54,12 @@ const ProductDetails = () => {
           <div className="flex space-x-4 mb-6">
             <button
               className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
-              onClick={() =>
-                addOneToCart(
-                  id,
-                  product.productName,
-                  product.price,
-                  product.image
-                )
-              }
+              onClick={() => addOneToCart(id, product.productName, product.price, product.image)}
             >
               Add to Cart
             </button>
-            <button
-              className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700"
-              onClick={() => setCartModel(!cartModel)}
-            >
-              Pay Now
+            <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700" onClick={()=>navigate("")}>
+              Buy Now
             </button>
           </div>
 

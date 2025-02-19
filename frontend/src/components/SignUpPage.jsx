@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
-import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const { signUp, error } = useAuthStore();
-
+ 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -42,7 +41,6 @@ const SignUpPage = () => {
       password: "",
     });
   };
-
   return (
     <div className="flex justify-center items-center p-10 h-[100%] bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg  w-full max-w-md">
@@ -104,11 +102,8 @@ const SignUpPage = () => {
               required
             />
           </div>
-          <div>
-            {error !== "Error sending verification email" && (
-              <p className="text-red-400">{error}</p>
-            )}
-          </div>
+          <div>{error && <p className="text-red-400">{error}</p>}</div>
+
           {/* Submit Button */}
           <div>
             <button
@@ -119,7 +114,6 @@ const SignUpPage = () => {
             </button>
           </div>
         </form>
-
         <div className="space-y-4" onClick={() => navigate("/signin")}>
           <p className="w-full py-2  text-blue-600 cursor-pointer">
             {" "}
