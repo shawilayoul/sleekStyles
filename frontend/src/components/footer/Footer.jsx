@@ -15,12 +15,13 @@ const Footer = () => {
       <div className="footer-top py-10 px-4 md:px-10 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* About Us */}
         <div className="left space-y-4">
-          <h3 className="text-xl font-semibold">About Us</h3>
+          <h3 className="text-xl font-semibold">About SleekStyle</h3>
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-            repellat facere molestiae ab facilis sunt id. Non eligendi, fugit
-            harum sint, iure molestias, cumque laboriosam eius deleniti
-            assumenda odit perspiciatis.
+            At SleekStyle, we believe fashion should be as effortless as it is
+            bold. Our curated collection of modern, minimalist clothing is
+            designed to help you express your unique style with confidence. From
+            everyday essentials to statement pieces, SleekStyle is your go-to
+            destination for clothing that’s sleek, stylish, and versatile.
           </p>
           <div className="social-icons flex space-x-4 text-2xl">
             <FaFacebook className="hover:text-blue-600" />
@@ -32,10 +33,11 @@ const Footer = () => {
 
         {/* Newsletter */}
         <div className="middle space-y-4">
-          <h3 className="text-xl font-semibold">Newsletter</h3>
+          <h3 className="text-xl font-semibold">Stay in the Loop</h3>
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
-            ullam perferendis fuga dolorem eveniet expedita voluptatibus qui.
+            Sign up for our newsletter to get the latest trends, exclusive
+            offers, and style tips directly to your inbox. Never miss out on new
+            arrivals and promotions from SleekStyle!
           </p>
           <div className="new-input flex space-x-2">
             <input
@@ -56,15 +58,16 @@ const Footer = () => {
 
         {/* Information */}
         <div className="right space-y-4">
-          <h3 className="text-xl font-semibold">Information</h3>
+          <h3 className="text-xl font-semibold">Customer Service</h3>
           <p className="hover:underline cursor-pointer">Delivery Information</p>
           <p className="hover:underline cursor-pointer">Contact Us</p>
+          <p className="hover:underline cursor-pointer">Returns & Exchanges</p>
         </div>
       </div>
 
       {/* Footer Bottom */}
       <div className="footer-bottom bg-gray-900 py-4 px-4 md:px-10 lg:px-20 flex flex-col md:flex-row justify-between text-sm text-gray-400">
-        <p>@2024 Copyright</p>
+        <p>@2024 SleekStyle. All rights reserved.</p>
         <div className="flex space-x-6">
           <p className="hover:underline cursor-pointer">
             General Conditions of Sale

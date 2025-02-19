@@ -9,9 +9,10 @@ const Product = require("./models/productsModel.js");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 const bucket = require("./config/firebase.js");
-// mongo db connect function
+
+// MongoDB connect function
 dbconnect();
 
 // Set up Multer for file upload
@@ -20,12 +21,18 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("common"));
-app.use(bodyParser.json({ limit: "16mb", extended: true })); // Make sure you add these two lines
+app.use(bodyParser.json({ limit: "16mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "16mb", extended: true }));
 app.use(cookieParser());
-
 app.use(express.json());
 
+// Middleware to set correct MIME type for .jsx files
+app.use((req, res, next) => {
+  if (req.url.endsWith('.jsx')) {
+    res.setHeader('Content-Type', 'application/javascript');
+  }
+  next();
+});
 
 app.post("/uploads", upload.single("image"), async (req, res) => {
   const { productName, description, price, quantity, category } = req.body;
@@ -34,11 +41,9 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
       return res.status(400).send("No file uploaded");
     }
 
-    // Create a reference to the Firebase storage file
     const fileName = Date.now() + req.file.originalname;
     const blob = bucket.file(fileName);
 
-    // Create a write stream to upload the image to Firebase
     const blobStream = blob.createWriteStream({
       metadata: {
         contentType: req.file.mimetype,
@@ -50,13 +55,9 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
     });
 
     blobStream.on("finish", async () => {
-      // Public URL for the uploaded file
       await blob.makePublic();
-
-      // Public URL for the uploaded file
       const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
-      // Save product details to MongoDB
       const product = new Product({
         productName,
         image: publicUrl,
@@ -67,9 +68,7 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
       });
 
       await product.save();
-      res
-        .status(201)
-        .send({ message: "Product created successfully", product });
+      res.status(201).send({ message: "Product created successfully", product });
     });
 
     blobStream.end(req.file.buffer);
@@ -84,19 +83,15 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
   const { productName, description, price, quantity, category } = req.body;
 
   try {
-    // Check if the product exists in the database
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).send({ message: "Product not found" });
     }
 
-    // Handle the file upload if a new image is provided
     if (req.file) {
-      // Create a reference to the Firebase storage file
       const fileName = Date.now() + req.file.originalname;
       const blob = bucket.file(fileName);
 
-      // Create a write stream to upload the image to Firebase
       const blobStream = blob.createWriteStream({
         metadata: {
           contentType: req.file.mimetype,
@@ -104,35 +99,26 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
       });
 
       blobStream.on("error", (err) => {
-        return res
-          .status(500)
-          .send({ error: "Error uploading file to Firebase", err });
+        return res.status(500).send({ error: "Error uploading file to Firebase", err });
       });
 
       blobStream.on("finish", async () => {
-        // Make the uploaded file publicly accessible
         await blob.makePublic();
-
-        // Public URL for the uploaded file
         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
-        // Update the product details along with the new image URL
         product.productName = productName || product.productName;
         product.description = description || product.description;
         product.price = price || product.price;
         product.quantity = quantity || product.quantity;
         product.category = category || product.category;
-        product.image = publicUrl; // Update with the new image URL
+        product.image = publicUrl;
 
         await product.save();
-        return res
-          .status(200)
-          .send({ message: "Product updated successfully", product });
+        return res.status(200).send({ message: "Product updated successfully", product });
       });
 
       blobStream.end(req.file.buffer);
     } else {
-      // If no new image is provided, update only the text fields
       product.productName = productName || product.productName;
       product.description = description || product.description;
       product.price = price || product.price;
@@ -140,9 +126,7 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
       product.category = category || product.category;
 
       await product.save();
-      return res
-        .status(200)
-        .send({ message: "Product updated successfully", product });
+      return res.status(200).send({ message: "Product updated successfully", product });
     }
   } catch (error) {
     console.error("Error updating product:", error);
@@ -165,7 +149,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
   });
 }
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

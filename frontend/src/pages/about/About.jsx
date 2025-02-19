@@ -4,52 +4,68 @@ const About = () => {
   return (
     <div className="about-container mx-auto max-w-7xl px-4 py-10">
       {/* Top Section */}
-      <div className="about-top flex flex-col md:flex-row items-center mb-10">
-        <div className="about-img w-full md:w-1/2 mb-6 md:mb-0">
-          <img
-            className="w-full h-auto rounded-lg shadow-lg"
-            src={images.bolg4}
-            alt="About Us"
-          />
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 md:ml-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-5 text-center ">
           About Us
         </h2>
-      </div>
+
+        <div className="contact-img mb-10 text-center">
+          <img
+            src={images.bolg4}
+            alt="Contact Us"
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </div>
 
       {/* Bottom Section */}
       <div className="about-bottom grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* About Section */}
         <div className="about-section bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">About SleekStyle Shop</h3>
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            About SleekStyle Shop
+          </h3>
           <p className="text-gray-600">
-            Departure defective arranging rapturous did believe him all had <br />
-            supported. Family months lasted simple set nature vulgar him. <br />
-            Picture for attempt joy excited ten carried manners talking how. <br />
-            Suspicion neglected he resolving agreement perceived at an.
+            At SleekStyle, we are passionate about offering the latest fashion
+            trends with a modern twist. Our shop brings you a curated collection
+            of high-quality clothing, designed to fit your unique style. Whether
+            you are looking for casual wear or something a bit more refined, we
+            offer something for every occasion.
+            <br />
+            With a focus on comfort, style, and versatility, our pieces are made
+            to elevate your wardrobe and boost your confidence.
           </p>
         </div>
 
         {/* Mission Section */}
         <div className="mission-section bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Our Mission
+          </h3>
           <p className="text-gray-600">
-            He moonlights difficult-engrossed, sportsmen. Interested has all <br />
-            Devonshire difficulty gay assistance joy. Unaffected at ye of <br />
-            compliment alteration to. Place voice no arises along to. Arrived <br />
-            off she elderly beloved him affixed noisier yet. Course regard to up
-            he hardly.
+            Our mission at SleekStyle is to empower individuals to express
+            themselves through fashion. We aim to provide timeless, stylish, and
+            comfortable clothing that makes you feel confident and chic, no
+            matter where life takes you.
+            <br />
+            We strive to create a positive shopping experience by offering
+            excellent customer service, fast shipping, and a diverse range of
+            stylish options.
           </p>
         </div>
 
         {/* Vision Section */}
         <div className="vision-section bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            Our Vision
+          </h3>
           <p className="text-gray-600">
-            To occasional dissimilar impossible sentiments. Do fortune account <br />
-            written prepare invited no passage. Skills that you can learn from <br />
-            business. Reliable sources to learn about WordPress. Never <br />
-            underestimate the influence of social media.
+            Our vision is to become a leading fashion destination, known for our
+            innovative designs, quality products, and exceptional customer
+            service. We aim to create a community where fashion meets
+            individuality and style knows no boundaries.
+            <br />
+            Through continuous improvement and a commitment to sustainability,
+            we plan to inspire confidence and promote self-expression through
+            the art of fashion.
           </p>
         </div>
       </div>
