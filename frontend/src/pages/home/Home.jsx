@@ -11,7 +11,6 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import ChiffreSection from "../../features/ChiffreSection";
 import Products from "../../features/Prodcuts";
 const Home = () => {
-
   return (
     <div className="home-container">
       {/* Hero Slider Section */}
@@ -31,7 +30,7 @@ const Home = () => {
                   {/* Left Image */}
                   <div className="left w-full md:w-1/4 flex justify-center mb-6 md:mb-0">
                     <img
-                      className="w-3/4 md:w-full rounded-lg object-cover"
+                      className="w-3/4 md:w-full h-80 md:h-[500px] rounded-lg object-cover"
                       src={imgageLeft}
                       alt="left image"
                     />
@@ -39,16 +38,16 @@ const Home = () => {
 
                   {/* Middle Text Content */}
                   <div className="middle w-full md:w-2/4 text-center px-4">
-                    <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                       {title}
                     </h2>
-                    <p className="text-xsm md:text-lg text-gray-600">{description}</p>
+                    <p className="text-lg text-gray-600">{description}</p>
                   </div>
 
                   {/* Right Image */}
                   <div className="right hidden w-full md:w-1/4 md:flex justify-center mt-6 md:mt-0">
                     <img
-                      className="w-3/4 md:w-full rounded-lg object-cover"
+                      className="w-3/4 md:w-full h-80 md:h-[500px] rounded-lg object-cover"
                       src={imageRight}
                       alt="right image"
                     />

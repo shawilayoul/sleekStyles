@@ -52,6 +52,10 @@ import bolg2 from "./blog-post-2.jpg";
 import bolg3 from "./blog-post-3.jpg";
 import bolg4 from "./blog-post-4.jpg";
 
+import tshirtNoir from "./t-shirt-noir.png";
+import tshirtBlanc from "./t-shirt-white.png";
+import tshirtRouge from "./t-shirt-rouge.png";
+
 export const images = {
   boy1,
   boy2,
@@ -104,4 +108,7 @@ export const images = {
   bolg2,
   bolg3,
   bolg4,
+  tshirtNoir,
+  tshirtBlanc,
+  tshirtRouge,
 };
