@@ -25,6 +25,10 @@ app.use(bodyParser.urlencoded({ limit: "16mb", extended: true }));
 app.use(cookieParser());
 app.use(express.json());
 
+
+app.use(cors({
+  origin: 'http://localhost:8000', // allow frontend to access
+}));
 // Middleware to set correct MIME type for .jsx files
 app.use((req, res, next) => {
   if (req.url.endsWith('.jsx')) {
