@@ -30,7 +30,6 @@ const AddProduct = () => {
     formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("subcategory", subcategory);
-
     try {
       await addProduct(formData);
       setMessage("Product added successfully!");

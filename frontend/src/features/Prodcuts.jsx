@@ -11,19 +11,18 @@ const Products = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8; // You can change this to the number of products per page you want
+  const productsPerPage = 8; 
 
   // Handle category filter change
   const handleSelectedFilterChange = (e) => {
     setSelectedFilter(e.target.value);
-    setSelectedSubFilter(""); // Reset subcategory filter when category changes
-    setFilterValue(e.target.value);
+    setSelectedSubFilter(""); // Reset subcategory filter
+    setFilterValue(e.target.value === "all" ? "" : e.target.value); // Set filterValue
   };
-
   // Handle subcategory filter change
   const handleSelectedSubFilterChange = (e) => {
     setSelectedSubFilter(e.target.value);
-    setFilterValue(`${selectedFilter}/${e.target.value}`); // Combine category and subcategory
+    setFilterValue(`${selectedFilter}/${e.target.value}`); // Set filterValue
   };
 
   // Calculate index of the first and last products on the current page

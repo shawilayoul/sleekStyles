@@ -38,7 +38,11 @@ app.use((req, res, next) => {
 });
 
 app.post("/uploads", upload.single("image"), async (req, res) => {
-  const { productName, description, price, quantity, category } = req.body;
+  const { productName, description, price, quantity, category, subcategory } = req.body;
+
+  console.log("Request Body:", req.body); // Debugging
+  console.log("Subcategory:", subcategory); // Debugging
+
   try {
     if (!req.file) {
       return res.status(400).send("No file uploaded");
@@ -61,7 +65,6 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
       // Public URL for the uploaded file
       await blob.makePublic();
 
-      // Public URL for the uploaded file
       const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
       // Save product details to MongoDB
@@ -72,12 +75,13 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
         price,
         quantity,
         category,
+        subcategory,
       });
 
+      console.log("Product to be saved:", product); // Debugging
+
       await product.save();
-      res
-        .status(201)
-        .send({ message: "Product created successfully", product });
+      res.status(201).send({ message: "Product created successfully", product });
     });
 
     blobStream.end(req.file.buffer);
@@ -89,7 +93,7 @@ app.post("/uploads", upload.single("image"), async (req, res) => {
 
 app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
   const productId = req.params._id;
-  const { productName, description, price, quantity, category } = req.body;
+  const { productName, description, price, quantity, category ,subcategory} = req.body;
 
   try {
     // Check if the product exists in the database
@@ -130,7 +134,8 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
         product.price = price || product.price;
         product.quantity = quantity || product.quantity;
         product.category = category || product.category;
-        product.image = publicUrl; // Update with the new image URL
+        product.image = publicUrl; 
+        product.subcategory = subcategory || product.subcategory;
 
         await product.save();
         return res
@@ -146,7 +151,7 @@ app.put("/uploads/:_id", upload.single("image"), async (req, res) => {
       product.price = price || product.price;
       product.quantity = quantity || product.quantity;
       product.category = category || product.category;
-
+      product.subcategory = subcategory || product.subcategory;
       await product.save();
       return res
         .status(200)

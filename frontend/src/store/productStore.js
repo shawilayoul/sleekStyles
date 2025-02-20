@@ -9,6 +9,7 @@ const useProductStore = create((set) => ({
   addProduct: async (products) => {
     set({ isloading: true, error: null });
     try {
+      console.log("products", products);
       const response = await axios.post(`https://sleekstyles.onrender.com/uploads`, products,{
         headers: {
             'Content-Type': 'multipart/form-data'

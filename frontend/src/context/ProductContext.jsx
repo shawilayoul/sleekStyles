@@ -13,19 +13,34 @@ export const ProductsContext = createContext({
 // eslint-disable-next-line react/prop-types
 const ProductContextProvider = ({ children }) => {
   const [productsInCart, setProductsInCart] = useState([]);
-  const [filterValue, setFilterValue] = useState("all");
+  const [filterValue, setFilterValue] = useState("");
   //geting products from the store
   const { product, getProducts } = useProductStore();
 
   //filtering products by gender
-  const filterProducts = (filterValue && filterValue !== "all")
-  ? (product || []).filter(
-      (product) =>
-        product.category === filterValue ||
-        product.price === filterValue
-    )
-  : product || []; // Fallback to an empty array if product is null
+  const filterProducts = () => {
 
+    if (!filterValue) return product || []; // Return all products if no filter is applied
+
+    const [category, subcategory] = filterValue.split("/");
+
+    const filteredProducts = (product || []).filter((product) => {
+      // If only category is selected
+      if (category && !subcategory) {
+        return product.category === category;
+      }
+      // If both category and subcategory are selected
+      if (category && subcategory) {
+        return (
+          product.category === category && product.subcategory === subcategory
+        );
+      }
+      // Default: return all products
+      return true;
+    });
+
+    return filteredProducts;
+  };
   // get qauntity
   const getQauntity = (id) => {
     const qauntity = productsInCart.find(
@@ -143,7 +158,7 @@ const ProductContextProvider = ({ children }) => {
 
   const contextValue = {
     items: productsInCart,
-    filterProducts,
+    filterProducts: filterProducts(),
     setFilterValue,
     addOneToCart,
     productsInCart,

@@ -39,8 +39,7 @@ const Products = () => {
   // Calculate the indices for products per page
   const indexOfLastProduct = (currentPage + 1) * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = product?.slice(indexOfFirstProduct, indexOfLastProduct);
-
+  const currentProducts = (product || []).slice(indexOfFirstProduct, indexOfLastProduct);
   // Handle page click for pagination
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
