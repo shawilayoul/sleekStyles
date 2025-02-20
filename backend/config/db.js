@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const dbconnect = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(process.env.MONGODB_URL, {
       serverSelectionTimeoutMS: 50000, // Increase timeout
     });
     console.log(`mongobd connected successfully ${conn.connection.host}`);
