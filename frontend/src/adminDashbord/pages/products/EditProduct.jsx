@@ -11,16 +11,19 @@ const EditProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [category, SetCategory] = useState("");
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubcategory] = useState("");
 
   const [existingImage, setExistingImage] = useState(null); // For displaying existing image
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
+
   // Load the product data when the component mounts
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,8 +36,8 @@ const EditProduct = () => {
         setDescription(product.description);
         setPrice(product.price);
         setQuantity(product.quantity);
-        SetCategory(product.category)
-        // image: null;// No need to set an image here
+        setCategory(product.category);
+        setSubcategory(product.subcategory);
         setExistingImage(product.image); // Store the existing image for display
       } catch (error) {
         setError("Error loading product data.");
@@ -44,6 +47,20 @@ const EditProduct = () => {
 
     fetchProduct();
   }, [productId]);
+
+  // Define subcategories based on the selected category
+  const getSubcategories = () => {
+    switch (category) {
+      case "men":
+        return ["T-Shirts", "Jeans", "Shoes", "Accessories"];
+      case "women":
+        return ["Dresses", "Jeans", "Shoes", "Accessories"];
+      case "kids":
+        return ["T-Shirts", "Dresses", "Shoes"];
+      default:
+        return [];
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,10 +73,10 @@ const EditProduct = () => {
     formData.append("price", price);
     formData.append("quantity", quantity);
     formData.append("category", category);
+    formData.append("subcategory", subcategory);
 
     // Send updated product data to the backend
     try {
-      // Send updated product data to the backend
       const response = await axios.put(
         `https://sleekstyles.onrender.com/uploads/${productId}`,
         formData
@@ -72,7 +89,8 @@ const EditProduct = () => {
         setDescription("");
         setPrice("");
         setQuantity("");
-        SetCategory("");
+        setCategory("");
+        setSubcategory("");
         setError("");
         setTimeout(() => {
           navigate("/dashboard/products");
@@ -126,7 +144,7 @@ const EditProduct = () => {
               id="description"
               name="description"
               value={description}
-              onChange={(e) => setDescription(e.target.description)}
+              onChange={(e) => setDescription(e.target.value)}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
               placeholder="Enter product description"
               rows="4"
@@ -180,16 +198,47 @@ const EditProduct = () => {
             >
               Category
             </label>
-            <input
-              type="text"
+            <select
               id="category"
               name="category"
+              onChange={(e) => {
+                setCategory(e.target.value);
+                setSubcategory(""); // Reset subcategory when category changes
+              }}
               value={category}
-              onChange={(e) => SetCategory(e.target.value)}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-              placeholder="Enter category"
               required
-            />
+            >
+              <option value="">Select a category</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+              <option value="kids">Kids</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="subcategory"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Subcategory
+            </label>
+            <select
+              id="subcategory"
+              name="subcategory"
+              onChange={(e) => setSubcategory(e.target.value)}
+              value={subcategory}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              required
+              disabled={!category} // Disable if no category is selected
+            >
+              <option value="">Select a subcategory</option>
+              {getSubcategories().map((sub) => (
+                <option key={sub} value={sub.toLowerCase()}>
+                  {sub}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Show existing image */}

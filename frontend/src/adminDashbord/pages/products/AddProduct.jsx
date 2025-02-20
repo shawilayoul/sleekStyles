@@ -1,7 +1,6 @@
 import { useState } from "react";
 import useProductStore from "../../../store/productStore";
 import toast from "react-hot-toast";
-//import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const { addProduct } = useProductStore();
@@ -11,15 +10,15 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [category, SetCategory] = useState("");
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubcategory] = useState("");
 
   const [message, setMessage] = useState("");
-
- // const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,9 +29,9 @@ const AddProduct = () => {
     formData.append("image", image);
     formData.append("quantity", quantity);
     formData.append("category", category);
+    formData.append("subcategory", subcategory);
 
     try {
-      //function to add a product
       await addProduct(formData);
       setMessage("Product added successfully!");
       toast.success("Product added successfully!");
@@ -41,13 +40,25 @@ const AddProduct = () => {
       setDescription("");
       setPrice("");
       setQuantity("");
-      SetCategory("");
-     /* setTimeout(() => {
-        navigate("/dashboard/products");
-      }, 2000);*/
+      setCategory("");
+      setSubcategory("");
     } catch (error) {
       setMessage("An error occurred. Please try again.");
       console.log(error);
+    }
+  };
+
+  // Define subcategories based on the selected category
+  const getSubcategories = () => {
+    switch (category) {
+      case "men":
+        return ["T-Shirts", "Jeans", "Shoes", "Accessories"];
+      case "women":
+        return ["Dresses", "Jeans", "Shoes", "Accessories"];
+      case "kids":
+        return ["T-Shirts", "Dresses", "Shoes"];
+      default:
+        return [];
     }
   };
 
@@ -137,6 +148,7 @@ const AddProduct = () => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label
               htmlFor="category"
@@ -145,21 +157,48 @@ const AddProduct = () => {
               Category
             </label>
             <select
-              type="text"
               id="category"
               name="category"
-              onChange={(e) => SetCategory(e.target.value)}
+              onChange={(e) => {
+                setCategory(e.target.value);
+                setSubcategory(""); // Reset subcategory when category changes
+              }}
               value={category}
-              className="mt-1 block w-full p-2 border border-gray-300
-              rounded-md"
-              placeholder="Enter category"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
               required
             >
+              <option value="">Select a category</option>
               <option value="men">Men</option>
               <option value="women">Women</option>
               <option value="kids">Kids</option>
             </select>
           </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="subcategory"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Subcategory
+            </label>
+            <select
+              id="subcategory"
+              name="subcategory"
+              onChange={(e) => setSubcategory(e.target.value)}
+              value={subcategory}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              required
+              disabled={!category} // Disable if no category is selected
+            >
+              <option value="">Select a subcategory</option>
+              {getSubcategories().map((sub) => (
+                <option key={sub} value={sub.toLowerCase()}>
+                  {sub}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="mb-4">
             <label
               htmlFor="image"

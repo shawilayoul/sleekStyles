@@ -2,13 +2,20 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { CardElement } from "@stripe/react-stripe-js";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUser} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 const Header = () => {
+  const [customerName, setCustomerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [stateProvince, setStateProvince] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [cartModel, setCartModel] = useState(false);
   const [checkOutModel, setCheckoutModel] = useState(false);
 
@@ -40,17 +47,23 @@ const Header = () => {
   const handleStripePayment = async (e) => {
     e.preventDefault();
     setLoading(true); // Set loading state
-
+  
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
       billing_details: {
-        name: "Jenny Rosen",
-        email: "shawil@gmail.com",
-        phone: "07 8237 11 77",
+        name: customerName, 
+        email: email, 
+        phone: phoneNumber, 
+        address: {
+          line1: streetAddress,
+          city: city, 
+          state: stateProvince, 
+          postal_code: postalCode, 
+        },
       },
     });
-
+  
     if (error) {
       console.log(error);
       setLoading(false); // Reset loading state if there's an error
@@ -64,21 +77,16 @@ const Header = () => {
           paymentMethodId: paymentMethod.id,
         }
       );
-      if (response.data.success) {
-        console.log("payment success");
-
-        // Clear the cart by calling clearCart from the ProductsContext
+      if (response.data.success) {  
         clearCart();
-
-        // Close the checkout modal and navigate to the success page
-        setCheckoutModel(false); // Close the checkout modal
+  
+        setCheckoutModel(false); 
         navigate("/checkout-success");
-
-        // Optionally, reset the cart modal as well
+  
         setCartModel(false);
       } else {
         console.error("Payment failed, try again.");
-        setLoading(false); // Reset loading state in case of failure
+        setLoading(false); 
       }
     }
   };
@@ -246,6 +254,18 @@ const Header = () => {
                     onSubmit={handleStripePayment}
                     className="ChackoutForm absolute top-full right-0 bg-white shadow-lg rounded-lg mt-4 w-80 md:w-96 p-4 space-y-1"
                   >
+                    {/* Customer Name Field */}
+                    <div className="space-y-1">
+                      <p className="font-bold">Customer Name</p>
+                      <input
+                        type="text"
+                        placeholder="Enter your name"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={customerName}
+                        onChange={(e) => setCustomerName(e.target.value)}
+                        required
+                      />
+                    </div>
                     {/* Email Field */}
                     <div className="space-y-1">
                       <p className="font-bold">E-mail</p>
@@ -253,6 +273,8 @@ const Header = () => {
                         type="email"
                         placeholder="Enter your Email"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                       />
                     </div>
@@ -273,6 +295,8 @@ const Header = () => {
                         type="text"
                         placeholder="Enter your street address"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={streetAddress}
+                        onChange={(e) => setStreetAddress(e.target.value)}
                         required
                       />
                     </div>
@@ -284,6 +308,8 @@ const Header = () => {
                         type="text"
                         placeholder="Enter your city"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         required
                       />
                     </div>
@@ -295,6 +321,8 @@ const Header = () => {
                         type="text"
                         placeholder="Enter your state or province"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={stateProvince}
+                        onChange={(e) => setStateProvince(e.target.value)}
                         required
                       />
                     </div>
@@ -306,6 +334,8 @@ const Header = () => {
                         type="tel"
                         placeholder="Enter your phone number"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                       />
                     </div>
@@ -317,6 +347,8 @@ const Header = () => {
                         type="text"
                         placeholder="Postal code"
                         className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        value={postalCode}
+                        onChange={(e) => setPostalCode(e.target.value)}
                         required
                       />
                     </div>

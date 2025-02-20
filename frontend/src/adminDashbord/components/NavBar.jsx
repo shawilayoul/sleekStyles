@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const { user, logout } = useAuthStore(); // Add logout function from the auth store
+  const { user, logout } = useAuthStore(); 
   const [isOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    logout(); // Call the logout function
-    setIsOpen(false); // Close the dropdown
+    logout(); 
+    setIsOpen(false); 
     navigate('/')
   };
 

@@ -6,15 +6,24 @@ const Products = () => {
   const { filterProducts, setFilterValue, addOneToCart } =
     useContext(ProductsContext);
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedSubFilter, setSelectedSubFilter] = useState(""); // New state for subcategory filter
   const navigate = useNavigate();
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8; // You can change this to the number of products per page you want
 
-  const handelSelectedFilterChange = (e) => {
+  // Handle category filter change
+  const handleSelectedFilterChange = (e) => {
     setSelectedFilter(e.target.value);
+    setSelectedSubFilter(""); // Reset subcategory filter when category changes
     setFilterValue(e.target.value);
+  };
+
+  // Handle subcategory filter change
+  const handleSelectedSubFilterChange = (e) => {
+    setSelectedSubFilter(e.target.value);
+    setFilterValue(`${selectedFilter}/${e.target.value}`); // Combine category and subcategory
   };
 
   // Calculate index of the first and last products on the current page
@@ -35,12 +44,27 @@ const Products = () => {
   // Calculate total number of pages
   const totalPages = Math.ceil(filterProducts.length / productsPerPage);
 
+  // Define subcategories based on the selected category
+  const getSubcategories = () => {
+    switch (selectedFilter) {
+      case "men":
+        return ["T-Shirts", "Jeans", "Shoes", "Accessories"];
+      case "women":
+        return ["Dresses", "Jeans", "Shoes", "Accessories"];
+      case "kids":
+        return ["T-Shirts", "Dresses", "Shoes"];
+      default:
+        return [];
+    }
+  };
+
   return (
     <>
       <h3 className="title text-2xl md:text-3xl font-bold text-center my-6 text-gray-800">
         Our Products
       </h3>
       <section className="products">
+        {/* Category Filter */}
         <div className="filter flex justify-center space-x-4 mb-6">
           {["all", "men", "women", "kids"].map((filter) => {
             // Check for valid filter value
@@ -50,7 +74,7 @@ const Products = () => {
               <button
                 key={filter}
                 value={filter}
-                onClick={handelSelectedFilterChange}
+                onClick={handleSelectedFilterChange}
                 className={`px-4 py-2 rounded-lg font-semibold ${
                   selectedFilter === filter ? "bg-green-500" : "bg-blue-800"
                 } text-white`}
@@ -61,6 +85,27 @@ const Products = () => {
           })}
         </div>
 
+        {/* Subcategory Filter */}
+        {selectedFilter !== "all" && (
+          <div className="filter flex justify-center space-x-4 mb-6">
+            {getSubcategories().map((sub) => (
+              <button
+                key={sub}
+                value={sub.toLowerCase()}
+                onClick={handleSelectedSubFilterChange}
+                className={`px-4 py-2 rounded-lg font-semibold ${
+                  selectedSubFilter === sub.toLowerCase()
+                    ? "bg-green-500"
+                    : "bg-blue-800"
+                } text-white`}
+              >
+                {sub}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
           {currentProducts?.map(({ _id, productName, price, image }) => (
             <div className="item bg-white shadow-md p-4 rounded-lg" key={_id}>

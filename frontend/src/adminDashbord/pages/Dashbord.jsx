@@ -27,11 +27,11 @@ ChartJS.register(
 const Dashboard = () => {
   // Example data for charts
   const salesData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["January", "February", "March", "April", "May", "June","July"],
     datasets: [
       {
         label: "Sales Revenue",
-        data: [1200, 1900, 1300, 2300, 1700, 2000],
+        data: [1200, 1900, 1300, 2300, 1700, 2000,1500],
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
