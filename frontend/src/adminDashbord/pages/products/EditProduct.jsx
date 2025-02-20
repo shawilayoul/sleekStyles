@@ -26,7 +26,7 @@ const EditProduct = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `https://sleekstyles.onrender.com//api/products/${productId}`
+          `https://sleekstyles.onrender.com/api/products/${productId}`
         );
         const product = response.data;
         setProductName(product.productName);

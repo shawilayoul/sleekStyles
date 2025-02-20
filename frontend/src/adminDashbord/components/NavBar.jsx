@@ -22,13 +22,7 @@ const NavBar = () => {
             {/* Left Section: Logo and Menu Button */}
             <div className="flex items-center ml-6 space-x-4">
               {/* Search Input */}
-              <div className="hidden sm:block">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="px-4 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+            
             </div>
 
             {/* Right Section: User Profile and Actions */}

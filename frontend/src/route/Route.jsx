@@ -188,7 +188,7 @@ const router = createBrowserRouter([
         element: <AddVendor />,
       },
       {
-        path: "editVendor",
+        path: "editVendor/:id",
         element: <EditVendor />,
       },
       {

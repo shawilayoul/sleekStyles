@@ -3,13 +3,16 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useProductStore from "../../../store/productStore";
+import ReactPaginate from "react-paginate";
 
 const Products = () => {
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [productsPerPage] = useState(4); // Adjust this to how many products you want per page
 
   const { product, getProducts } = useProductStore();
-  console.log(product)
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -20,22 +23,29 @@ const Products = () => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [getProducts]);
 
   const handleDelete = async (productId) => {
     try {
       await axios.delete(
         `https://sleekstyles.onrender.com/api/products/${productId}`
       );
-      product.filter((product) => product._id !== productId); // Update UI after deletion
-      await getProducts();
+      await getProducts(); // Re-fetch the products after deletion
       toast.success("Product has been deleted successfully");
     } catch (error) {
       setError("Error deleting product");
     }
   };
 
-  //if (loading) return <p>Loading products...</p>;
+  // Calculate the indices for products per page
+  const indexOfLastProduct = (currentPage + 1) * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = product?.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Handle page click for pagination
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-2">
@@ -69,7 +79,7 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-           { Array.isArray(product) ? product?.map((product) => (
+              {currentProducts?.map((product) => (
                 <tr key={product._id} className="border-t">
                   <td className="py-3 px-4">
                     <img
@@ -83,9 +93,6 @@ const Products = () => {
                   <td className="py-3 px-4">{product.quantity}</td>
                   <td className="py-3 px-4">{product.category}</td>
                   <td className="py-3 px-4">
-                    <div
-                      onClick={() => navigate(`editProduct/${product._id}`)}
-                    ></div>
                     <Link
                       to={`editProduct/${product._id}`}
                       className="text-blue-500 mr-2"
@@ -100,10 +107,38 @@ const Products = () => {
                     </button>
                   </td>
                 </tr>
-              )):null}
+              ))}
             </tbody>
           </table>
         </div>
+
+        {/* Pagination */}
+        <div className="mt-4 flex justify-center items-center space-x-2">
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={Math.ceil(product?.length / productsPerPage)}
+          onPageChange={handlePageClick}
+          containerClassName={"flex items-center space-x-2"}
+          pageClassName={"page-item"}
+          pageLinkClassName={
+            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
+          }
+          previousClassName={"page-item"}
+          previousLinkClassName={
+            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
+          }
+          nextClassName={"page-item"}
+          nextLinkClassName={
+            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
+          }
+          breakClassName={"page-item"}
+          breakLinkClassName={
+            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
+          }
+          activeClassName={"bg-blue-500 text-white"}
+        />
+      </div>
       </div>
     </div>
   );

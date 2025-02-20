@@ -68,9 +68,6 @@ const SidBar = () => {
             <li className="p-1  hover:bg-blue-300 ">
               <Link to="categories">Categories</Link>
             </li>
-            <li className="p-1 hover:bg-blue-300 ">
-              <Link to="addCategory">Add Category</Link>
-            </li>
           </ul>
         )}
       </div>
