@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useProductStore from "../../../store/productStore";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const { addProduct } = useProductStore();
@@ -15,6 +16,8 @@ const AddProduct = () => {
 
   const [message, setMessage] = useState("");
 
+    const navigate = useNavigate();
+  
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -41,6 +44,9 @@ const AddProduct = () => {
       setQuantity("");
       setCategory("");
       setSubcategory("");
+      setTimeout(() => {
+        navigate("/dashboard/products");
+      }, 2000);
     } catch (error) {
       setMessage("An error occurred. Please try again.");
       console.log(error);

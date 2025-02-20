@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import useProductStore from "../../../store/productStore";
 import ReactPaginate from "react-paginate";
@@ -39,7 +39,10 @@ const Products = () => {
   // Calculate the indices for products per page
   const indexOfLastProduct = (currentPage + 1) * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = (product || []).slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = (product || []).slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   // Handle page click for pagination
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
@@ -112,31 +115,32 @@ const Products = () => {
 
         {/* Pagination */}
         <div className="mt-4 flex justify-center items-center space-x-2">
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          pageCount={Math.ceil(product?.length / productsPerPage)}
-          onPageChange={handlePageClick}
-          containerClassName={"flex items-center space-x-2"}
-          pageClassName={"page-item"}
-          pageLinkClassName={
-            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
-          }
-          previousClassName={"page-item"}
-          previousLinkClassName={
-            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
-          }
-          nextClassName={"page-item"}
-          nextLinkClassName={
-            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
-          }
-          breakClassName={"page-item"}
-          breakLinkClassName={
-            "px-4 py-2 bg-gray-200 text-gray-700 rounded-md cursor-pointer hover:bg-gray-300"
-          }
-          activeClassName={"bg-blue-500 text-white"}
-        />
-      </div>
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={Math.ceil(product?.length / productsPerPage)}
+            onPageChange={handlePageClick}
+            containerClassName={"flex items-center space-x-2"}
+            pageClassName={"page-item"}
+            pageLinkClassName={
+              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+            }
+            previousClassName={"page-item"}
+            previousLinkClassName={
+              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+            }
+            nextClassName={"page-item"}
+            nextLinkClassName={
+              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+            }
+            breakClassName={"page-item"}
+            breakLinkClassName={
+              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+            }
+            activeClassName={"active-page"} 
+            activeLinkClassName={"active-page-link"} 
+          />
+        </div>
       </div>
     </div>
   );

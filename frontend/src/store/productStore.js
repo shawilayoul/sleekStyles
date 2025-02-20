@@ -45,6 +45,7 @@ const useProductStore = create((set) => ({
   getProducts: async () => {
     set({ isloading: true, error: null });
     try {
+      
       const response = await axios.get("https://sleekstyles.onrender.com/api/products");
       set({ product: response.data, isloading: false });
     } catch (error) {

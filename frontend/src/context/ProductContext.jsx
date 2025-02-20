@@ -20,7 +20,7 @@ const ProductContextProvider = ({ children }) => {
   //filtering products by gender
   const filterProducts = () => {
 
-    if (!filterValue) return product || []; // Return all products if no filter is applied
+    if (!filterValue) return product || []; 
 
     const [category, subcategory] = filterValue.split("/");
 

@@ -21,3 +21,17 @@ h1,h2,h3,h4{
     margin: 0;
     padding: 0;
 }
+
+.active-page {
+    background-color: green !important; 
+    color: white !important; 
+    border-radius: 0.375rem; 
+    padding: 0.5rem 1rem; 
+    z-index: 100;
+  }
+
+  .active-page-link {
+    color: white !important; 
+    font-weight: bold; 
+    background-color: green !important;
+  }
