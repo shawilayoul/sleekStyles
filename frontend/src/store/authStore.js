@@ -53,7 +53,7 @@ const useAuthStore = create((set) => ({
       throw error;
     }
   },
-  logOut: async () => {
+  /*logOut: async () => {
     set({ user: null, isloading: true });
     try {
        await axios.get(`${apiUrl}/logOut`);
@@ -65,6 +65,11 @@ const useAuthStore = create((set) => ({
       });
       throw error;
     }
+  },*/
+
+  logout: () => {
+    set({ user: null }); // Clear user data on logout
+    // Add any additional logout logic (e.g., clearing tokens, redirecting)
   },
 
   forgotPassword: async (email) => {

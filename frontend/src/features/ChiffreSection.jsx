@@ -4,8 +4,8 @@ const ChiffreSection = () => {
       {[
         { value: "15K+", description: "Satisfied Customers" },
         { value: "8+", description: "Years of Experience" },
-        { value: "16", description: "Quality Products" },
-        { value: "92%", description: "Natural Ingredients" },
+        { value: "16", description: "Product Range" },
+        { value: "92%", description: "Sustainability" },
       ].map((milestone) => (
         <div
           className="features-item text-center mb-8 w-1/2 md:w-auto"

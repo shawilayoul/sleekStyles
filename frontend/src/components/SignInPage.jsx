@@ -1,43 +1,72 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useAuthStore from "../store/authStore";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../store/authStore';
 
-const SignInPage = () => {
-  const { signIn, error } = useAuthStore();
+const LoginPage = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const { signIn } = useAuthStore();
+
+  const [role, setRole] = useState(''); 
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-  const handleSubmit = async (e) => {
+
+
+  const handleSubmit =async (e) => {
     e.preventDefault();
     try {
       await signIn(formData?.email, formData?.password);
-      navigate("/dashboard");
+      if (role === 'customer') {
+        // handle customer login logic
+        navigate('/customerProfile');
+      } else if (role === 'admin') {
+        // handle admin login logic
+        navigate('/dashboard');
+      } else {
+        setError('Please select a role');
+      }
     } catch (error) {
       console.error(error);
       throw new Error(error);
     }
+   
   };
 
   return (
     <div className="flex justify-center p-10 items-center bg-gray-100 h-[100%]">
-      <div className="bg-white p-8 rounded-lg  shadow-lg w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
+        
+        {/* Role Selection */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Select Role</label>
+          <div className="flex justify-around">
+            <button
+              onClick={() => setRole('customer')}
+              className={`py-2 px-4 border rounded-md ${role === 'customer' ? 'bg-gray-800 text-white' : 'bg-gray-200'}`}
+            >
+              Customer
+            </button>
+            <button
+              onClick={() => setRole('admin')}
+              className={`py-2 px-4 border rounded-md ${role === 'admin' ? 'bg-gray-800 text-white' : 'bg-gray-200'}`}
+            >
+              Admin
+            </button>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email Field */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
             </label>
             <input
@@ -53,10 +82,7 @@ const SignInPage = () => {
 
           {/* Password Field */}
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
             <input
@@ -69,11 +95,10 @@ const SignInPage = () => {
               required
             />
             <div onClick={() => navigate("/forgotPassword")}>
-              <p className="w-full  text-blue-600 cursor-pointer">
-                forgot password
-              </p>
+              <p className="w-full text-blue-600 cursor-pointer">Forgot password?</p>
             </div>
           </div>
+
           {/* Submit Button */}
           <div>
             <button
@@ -84,12 +109,14 @@ const SignInPage = () => {
             </button>
           </div>
         </form>
+
         <div>
           {error && <p className="text-center text-red-500">{error}</p>}
         </div>
+
         <div onClick={() => navigate("/signup")}>
-          <p className="w-full py-2  text-blue-600 cursor-pointer">
-            Do not have an account create one
+          <p className="w-full py-2 text-blue-600 cursor-pointer">
+            Do not have an account? Create one
           </p>
         </div>
       </div>
@@ -97,4 +124,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default LoginPage;

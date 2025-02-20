@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import toast from "react-hot-toast";
 import useProductStore from "../../../store/productStore";
 import ReactPaginate from "react-paginate";
@@ -11,7 +11,6 @@ const Products = () => {
   const [productsPerPage] = useState(4); // Adjust this to how many products you want per page
 
   const { product, getProducts } = useProductStore();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {

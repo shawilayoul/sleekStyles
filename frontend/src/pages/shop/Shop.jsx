@@ -69,7 +69,7 @@ const Shop = () => {
         </div>
 
         {/* Right Section - Filters */}
-        <div className="shop-left w-full md:w-1/4 bg-white shadow-lg rounded-lg p-6">
+        <div className="shop-left w-full md:w-1/4  bg-white h-[620px] shadow-lg rounded-lg p-6">
           {/* Categories */}
           <h3 className="text-2xl font-semibold mb-4">Categories</h3>
           <div className="select-section space-y-4">
@@ -94,14 +94,12 @@ const Shop = () => {
           <div className="color mt-8">
             <h3 className="text-2xl font-semibold mb-4">Colors</h3>
             <div className="color-items flex gap-2">
-              {[ "red", "orange", "blue", "green"].map(
-                (color) => (
-                  <button
-                    key={color}
-                    className={`w-8 h-8 rounded-full bg-${color}-500 border`}
-                  ></button>
-                )
-              )}
+              {["red", "orange", "blue", "green"].map((color) => (
+                <button
+                  key={color}
+                  className={`w-8 h-8 rounded-full bg-${color}-500 border`}
+                ></button>
+              ))}
             </div>
           </div>
 
@@ -123,8 +121,10 @@ const Shop = () => {
           </div>
         </div>
       </section>
-      <Products />
-      <ChiffreSection />
+      <section className="shop-bottom md:mt-[-200px] mt-0">
+        <Products />
+        <ChiffreSection />
+      </section>
     </div>
   );
 };

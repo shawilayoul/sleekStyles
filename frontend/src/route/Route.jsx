@@ -43,6 +43,7 @@ import ProductDetails from "../pages/ProductDetails";
 
 import useAuthStore from "../store/authStore";
 import { useEffect } from "react";
+import CustomerProfile from "../adminDashbord/components/CustomerProfile";
 
 const ProdectedRoute = ({ children }) => {
 
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
       {
         path: "/productDetails/:id",
         element: <ProductDetails />,
+      },
+      {
+        path:"/customerProfile",
+        element:<CustomerProfile/>
       },
       {
         path: "/signUp",

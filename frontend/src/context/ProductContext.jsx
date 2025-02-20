@@ -104,7 +104,7 @@ const ProductContextProvider = ({ children }) => {
     saveToLocalStorage();
   };
   //get total price
-  const getTotalCost = () => {
+ /* const getTotalCost = () => {
     let total = 0;
     const cost = productsInCart.reduce(
       (sum, acc) => sum + acc.price * acc.qauntity,
@@ -112,12 +112,33 @@ const ProductContextProvider = ({ children }) => {
     );
     total += cost;
     return total;
+  };*/
+
+  const getTotalCost = () => {
+    if (!productsInCart || productsInCart.length === 0) return 0;
+  
+    let total = 0;
+    const cost = productsInCart.reduce(
+      (sum, acc) => sum + (acc.price || 0) * (acc.qauntity || 0),
+      0
+    );
+    total += cost;
+    return total;
   };
+  
+ 
   // save to local storage
   const saveToLocalStorage = () => {
     localStorage.setItem("products", JSON.stringify(productsInCart));
   };
 
+  //clear cart
+
+  const clearCart = () => {
+    setProductsInCart([]);
+    saveToLocalStorage();
+  };
+  
   //admin dasboard functionalities
 
   const contextValue = {
@@ -129,6 +150,7 @@ const ProductContextProvider = ({ children }) => {
     getTotalCost,
     deleteFromCart,
     removerOneFromCart,
+    clearCart,
   };
   return (
     <ProductsContext.Provider value={contextValue}>

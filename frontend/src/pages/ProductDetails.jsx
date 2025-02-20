@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import axios from "axios";
 import { ProductsContext } from "../context/ProductContext";
+import LoadingSpinner from "../features/LoadingSpinner";
 
 const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
@@ -10,7 +11,6 @@ const ProductDetails = () => {
   const { addOneToCart } =
     useContext(ProductsContext);
 
-    const navigate =useNavigate()
 
   // Fetch product details from the backend
   useEffect(() => {
@@ -29,7 +29,7 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner/>;
   }
 
   return (
@@ -57,9 +57,6 @@ const ProductDetails = () => {
               onClick={() => addOneToCart(id, product.productName, product.price, product.image)}
             >
               Add to Cart
-            </button>
-            <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700" onClick={()=>navigate("")}>
-              Buy Now
             </button>
           </div>
 

@@ -2,10 +2,10 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { CardElement } from "@stripe/react-stripe-js";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUser, FaSearch } from "react-icons/fa";
+import { FaUser} from "react-icons/fa";
 import { useContext, useState } from "react";
 import { ProductsContext } from "../../context/ProductContext";
-import {  useStripe, useElements } from "@stripe/react-stripe-js";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 const Header = () => {
@@ -13,6 +13,7 @@ const Header = () => {
   const [checkOutModel, setCheckoutModel] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false); // Track loading state
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -24,6 +25,7 @@ const Header = () => {
     deleteFromCart,
     addOneToCart,
     removerOneFromCart,
+    clearCart,
   } = useContext(ProductsContext);
 
   // get the total qauntity
@@ -35,8 +37,9 @@ const Header = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleSubmit = async (e) => {
+  const handleStripePayment = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -50,19 +53,32 @@ const Header = () => {
 
     if (error) {
       console.log(error);
+      setLoading(false); // Reset loading state if there's an error
     } else {
       console.log(paymentMethod);
       // Send the paymentMethod.id to your backend for processing
       const response = await axios.post(
-        "https://sleekbackendexpress.onrender.com/create-checkout/",
+        "https://sleekstyles.onrender.com/create-checkout/",
         {
           amount: getTotalCost() * 1000,
           paymentMethodId: paymentMethod.id,
         }
       );
       if (response.data.success) {
-        console.log("payement success");
+        console.log("payment success");
+
+        // Clear the cart by calling clearCart from the ProductsContext
+        clearCart();
+
+        // Close the checkout modal and navigate to the success page
+        setCheckoutModel(false); // Close the checkout modal
         navigate("/checkout-success");
+
+        // Optionally, reset the cart modal as well
+        setCartModel(false);
+      } else {
+        console.error("Payment failed, try again.");
+        setLoading(false); // Reset loading state in case of failure
       }
     }
   };
@@ -94,7 +110,7 @@ const Header = () => {
           {/* Logo Section */}
           <div className="hidden flex-shrink-0 md:flex items-center">
             <a href="/" className="md:text-2xl font-bold text-xl">
-             SleekStyles
+              SleekStyles
             </a>
           </div>
           {/* Mobile Menu Button */}
@@ -131,14 +147,6 @@ const Header = () => {
           </ul>
           {/* search btn cart profile */}
           <div className="right flex items-center gap-10 ms:gap-2">
-            <div className="search hidden md:flex items-center gap-2 ">
-              <FaSearch className="search-icon" />
-              <input
-                type="text"
-                placeholder="search.........."
-                className="rounded p-1"
-              />
-            </div>
             <div className="user cursor-pointer">
               <FaUser className="icons" onClick={() => navigate("/signup")} />
             </div>
@@ -235,10 +243,11 @@ const Header = () => {
                 {/* Checkout Form */}
                 {checkOutModel && (
                   <form
-                    onSubmit={handleSubmit}
-                    className="ChackoutForm absolute top-full right-0 bg-white shadow-lg rounded-lg mt-4 w-80 md:w-96 p-4 space-y-4"
+                    onSubmit={handleStripePayment}
+                    className="ChackoutForm absolute top-full right-0 bg-white shadow-lg rounded-lg mt-4 w-80 md:w-96 p-4 space-y-1"
                   >
-                    <div className="space-y-2">
+                    {/* Email Field */}
+                    <div className="space-y-1">
                       <p className="font-bold">E-mail</p>
                       <input
                         type="email"
@@ -248,48 +257,107 @@ const Header = () => {
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    {/* Card Information */}
+                    <div className="space-y-1">
                       <p className="font-bold">Card Information</p>
-                      <CardElement className="border p-2 rounded-md border-gray-300"  required/>
-                    </div>
-
-                    <div className="space-y-2">
-                      <p className="font-bold">Country or Region</p>
-                      <select className="w-full p-2 border border-gray-300 text-gray-700 rounded-md" required>
-                        <option value="United States">United States</option>
-                        <option value="United States">France</option>
-                        <option value="United States">Spain</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <p className="font-bold">Postal Code</p>
-                      <input
-                        type="text"
-                        placeholder="Postal code"
-                        className="w-full p-2 border border-gray-300  text-gray-700 rounded-md"
+                      <CardElement
+                        className="border p-2 rounded-md border-gray-300"
                         required
                       />
                     </div>
 
+                    {/* Billing Address - Street */}
+                    <div className="space-y-1">
+                      <p className="font-bold">Street Address</p>
+                      <input
+                        type="text"
+                        placeholder="Enter your street address"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
+                      />
+                    </div>
+
+                    {/* Billing Address - City */}
+                    <div className="space-y-1">
+                      <p className="font-bold">City</p>
+                      <input
+                        type="text"
+                        placeholder="Enter your city"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
+                      />
+                    </div>
+
+                    {/* Billing Address - State/Province */}
+                    <div className="space-y-1">
+                      <p className="font-bold">State/Province</p>
+                      <input
+                        type="text"
+                        placeholder="Enter your state or province"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
+                      />
+                    </div>
+
+                    {/* Phone Number */}
+                    <div className="space-y-1">
+                      <p className="font-bold">Phone Number</p>
+                      <input
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
+                      />
+                    </div>
+
+                    {/* Postal Code */}
+                    <div className="space-y-1">
+                      <p className="font-bold">Postal Code</p>
+                      <input
+                        type="text"
+                        placeholder="Postal code"
+                        className="w-full p-2 border border-gray-300 text-gray-700 rounded-md"
+                        required
+                      />
+                    </div>
+
+                    {/* Terms and Conditions */}
+                    <div className="space-y-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="terms"
+                        className="mr-2"
+                        required
+                      />
+                      <label htmlFor="terms" className="text-sm text-gray-600">
+                        I agree to the{" "}
+                        <a href="/terms" className="text-blue-500">
+                          Terms & Conditions
+                        </a>{" "}
+                        and{" "}
+                        <a href="/privacy-policy" className="text-blue-500">
+                          Privacy Policy
+                        </a>
+                        .
+                      </label>
+                    </div>
+
+                    {/* Submit Buttons */}
                     <div className="flex justify-between space-x-2 mt-4">
                       <button
-                        className="btCancell w-1/2 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                        type="button"
+                        className="w-1/2 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
                         onClick={() => setCheckoutModel(!checkOutModel)}
                       >
                         Cancel
                       </button>
+
                       <button
                         type="submit"
                         className="w-1/2 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-                        onClick={() =>
-                          setTimeout(() => {
-                            navigate("/checkout-success");
-                            setCheckoutModel(!checkOutModel)
-                          }, 3000)
-                        }
+                        disabled={loading}
                       >
-                        Pay Now
+                        {loading ? "Processing..." : "Pay Now"}
                       </button>
                     </div>
                   </form>
