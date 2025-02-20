@@ -3,7 +3,7 @@ import { create } from "zustand";
 //const apiUrl = "http://localhost:8000";
 
 const useProductStore = create((set) => ({
-  product: null,
+  product: [],
   isloading: false,
   error: null,
   addProduct: async (products) => {

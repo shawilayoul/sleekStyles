@@ -22,7 +22,7 @@ const Products = () => {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
   // Get the products for the current page
-  const currentProducts = filterProducts.slice(
+  const currentProducts = (filterProducts || []).slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -44,7 +44,7 @@ const Products = () => {
         <div className="filter flex justify-center space-x-4 mb-6">
           {["all", "men", "women", "kids"].map((filter) => {
             // Check for valid filter value
-            if (!filter) return null;
+            if (!filter || typeof filter !== "string") return null;
 
             return (
               <button

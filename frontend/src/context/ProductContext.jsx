@@ -13,18 +13,18 @@ export const ProductsContext = createContext({
 // eslint-disable-next-line react/prop-types
 const ProductContextProvider = ({ children }) => {
   const [productsInCart, setProductsInCart] = useState([]);
-  const [filterValue, setFilterValue] = useState("");
+  const [filterValue, setFilterValue] = useState("all");
   //geting products from the store
   const { product, getProducts } = useProductStore();
 
   //filtering products by gender
-  const filterProducts = filterValue && filterValue !== "all"
-    ? product.filter(
-        (product) =>
-          product.category === filterValue ||
-          product.price === filterValue
-      )
-    : product;
+  const filterProducts = (filterValue && filterValue !== "all")
+  ? (product || []).filter(
+      (product) =>
+        product.category === filterValue ||
+        product.price === filterValue
+    )
+  : product || []; // Fallback to an empty array if product is null
 
   // get qauntity
   const getQauntity = (id) => {
