@@ -24,7 +24,7 @@ const Home = () => {
           pagination={{ clickable: true }}
         >
           {homeSlideData.map(
-            ({ id, title, description, imageRight, imgageLeft }) => (
+            ({ id, title, description, imageRight, imgageLeft, cta }) => (
               <SwiperSlide key={id}>
                 <div className="slider flex flex-col md:flex-row items-center justify-center px-4 py-8 bg-white shadow-md rounded-lg">
                   {/* Left Image */}
@@ -38,10 +38,13 @@ const Home = () => {
 
                   {/* Middle Text Content */}
                   <div className="middle w-full md:w-2/4 text-center px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
                       {title}
                     </h2>
                     <p className="text-lg text-gray-600">{description}</p>
+                    <button className="mt-4 bg-green-500 text-white px-6 py-2 rounded-lg">
+                      {cta}
+                    </button>
                   </div>
 
                   {/* Right Image */}

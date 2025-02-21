@@ -24,12 +24,7 @@ const SignUpPage = () => {
     e.preventDefault();
     await signUp(formData.username, formData.email, formData.password);
     if (error) {
-      if (error === "Error sending verification email") {
-          toast.success("Your Account has been created successfully");
-          navigate("/signin");
-      } else {
           toast.error("An unexpected error occurred. Please try again.");
-      }
   } else {
       // If no error, navigate to sign-in after successful sign-up
       toast.success("Verification email has been sent to your email verify it");

@@ -6,41 +6,46 @@ export const homeSlideData = [
     id: 1,
     title: "Casual Comfort: The Classic T-Shirt",
     description:
-      "Experience ultimate comfort and effortless style with our premium cotton t-shirts, perfect for any occasion.",
+      "Experience ultimate comfort and effortless style with our premium cotton t-shirts, perfect for any occasion. Shop now and enjoy free shipping on your first order!",
     imgageLeft: images.tshirt1,
     imageRight: images.tshirt1,
+    cta: "Shop Now", // Add a call-to-action
   },
   {
     id: 2,
     title: "Bold & Vibrant: The Red Statement Tee",
     description:
-      "Make a statement with our eye-catching red t-shirt—bold, confident, and designed for those who stand out.",
+      "Make a statement with our eye-catching red t-shirt—bold, confident, and designed for those who stand out. Limited stock available—grab yours before it's gone!",
     imgageLeft: images.tshirtRouge,
     imageRight: images.tshirtRouge,
+    cta: "Get Yours", // Add urgency
   },
   {
     id: 3,
     title: "Timeless Elegance: The Black Tee",
     description:
-      "A wardrobe essential—our black t-shirt pairs seamlessly with any outfit, offering style and sophistication.",
+      "A wardrobe essential—our black t-shirt pairs seamlessly with any outfit, offering style and sophistication. Upgrade your wardrobe today!",
     imgageLeft: images.tshirtNoir,
     imageRight: images.tshirtNoir,
+    cta: "Upgrade Now", // Encourage action
   },
   {
     id: 4,
     title: "Sharp & Stylish: The Modern Suit",
     description:
-      "Elevate your look with our finely tailored suit—perfect for formal occasions and business elegance.",
+      "Elevate your look with our finely tailored suit—perfect for formal occasions and business elegance. Discover the perfect fit for your next big event.",
     imgageLeft: images.suit2,
     imageRight: images.suit2,
+    cta: "Discover More", // Invite exploration
   },
   {
     id: 5,
     title: "The Power Suit: Confidence in Every Stitch",
     description:
-      "Command attention with our premium suit—crafted for those who lead with style and authority.",
+      "Command attention with our premium suit—crafted for those who lead with style and authority. Shop now and enjoy exclusive discounts!",
     imgageLeft: images.suit4,
     imageRight: images.suit4,
+    cta: "Shop Exclusive", // Highlight exclusivity
   },
 ];
 
@@ -102,7 +107,8 @@ export const blogPost = [
     id: 3,
     image: images.bolg3,
     date: "20/10/2024",
-    title: "The Art of Accessorizing: Elevating Your Outfits with Simple Pieces",
+    title:
+      "The Art of Accessorizing: Elevating Your Outfits with Simple Pieces",
     author: "John",
     description:
       "Accessories can make or break an outfit. In this post, we dive into the art of accessorizing, showcasing how the right accessories can elevate even the simplest of outfits. Whether it’s a statement necklace or a stylish scarf, discover how to add the perfect finishing touch to your wardrobe.",
@@ -118,113 +124,3 @@ export const blogPost = [
   },
 ];
 
-
-/*** home product data ***/
-export const PopularProductData = [
-  {
-    id: 1,
-    image: images.kid1,
-    name: " kids",
-    price:100,
-    sold:854
-
-  },
-  {
-    id: 2,
-    image: images.girl8,
-    name: "product women",
-    price: 10,
-    sold:694
-  },
-  {
-    id: 3,
-    image: images.boy10,
-    name: "product men",
-    price:"20",
-    sold:874
-  },
-  {
-    id: 4,
-    image: images.boy11,
-    name: "product men",
-    price: "10",
-    sold:356
-  },
-  {
-    id: 5,
-    image: images.girl7,
-    name: "product women",
-    price: "70",
-    sold:745
-  },
-  {
-    id: 6,
-    image: images.kid2,
-    name: "product kid",
-    price: "50",
-    sold:142
-  },
-  {
-    id: 7,
-    image: images.kid3,
-    name: "product kids",
-    price: "80",
-    sold:361
-  },
-  {
-    id: 8,
-    image: images.boy15,
-    name: "product men",
-    price: "100",
-    sold:412
-  },/*
-  {
-    id: 9,
-    image: images.girl3,
-    name: "product women",
-    price: "100",
-    sold:412
-  },
-  {
-    id: 10,
-    image: images.kid5,
-    name: "product kids",
-    price: "70",
-    sold:854
-  },
-  {
-    id: 11,
-    image: images.kid2,
-    name: "product kids",
-    price: "40",
-    sold:1854
-  },
-  {
-    id: 12,
-    image: images.girl9,
-    name: "product women",
-    price: "80",
-    sold:317
-  },
-  {
-    id: 13,
-    image: images.boy11,
-    name: "product men",
-    price: "70",
-    sold:7856
-  },
-  {
-    id: 14,
-    image: images.boy1,
-    name: "product men",
-    price: "70",
-    sold:7453
-  },
-  {
-    id: 15,
-    image: images.girl6,
-    name: "product women",
-    price: "100",
-    sold:732
-  },*/
-];

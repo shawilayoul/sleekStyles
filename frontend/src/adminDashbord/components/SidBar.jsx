@@ -131,9 +131,6 @@ const SidBar = () => {
             <li className="p-1  hover:bg-blue-300 ">
               <Link to="billing">Billings</Link>
             </li>
-            <li className="p-1 hover:bg-blue-300 ">
-              <Link to="addBilling">Add Billing</Link>
-            </li>
           </ul>
         )}
       </div>

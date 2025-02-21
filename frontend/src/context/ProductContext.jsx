@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useProductStore from "../store/productStore";
+// eslint-disable-next-line react-refresh/only-export-components
 export const ProductsContext = createContext({
   items: [],
   getQauntity: () => {},
@@ -118,16 +119,7 @@ const ProductContextProvider = ({ children }) => {
     toast.success("the item has been deleted from the cart successfully");
     saveToLocalStorage();
   };
-  //get total price
- /* const getTotalCost = () => {
-    let total = 0;
-    const cost = productsInCart.reduce(
-      (sum, acc) => sum + acc.price * acc.qauntity,
-      0
-    );
-    total += cost;
-    return total;
-  };*/
+ 
 
   const getTotalCost = () => {
     if (!productsInCart || productsInCart.length === 0) return 0;

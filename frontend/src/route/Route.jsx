@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter} from "react-router-dom";
 import AppLayOUt from "../components/AppLayOUt";
 import Home from "../pages/home/Home";
 import Shop from "../pages/shop/Shop";
@@ -28,53 +28,13 @@ import EditCustomer from "../adminDashbord/pages/customers/EditCustomer";
 import AddVendor from "../adminDashbord/pages/vendors/AddVendor";
 import EditVendor from "../adminDashbord/pages/vendors/EditVendor";
 import Billing from "../adminDashbord/pages/billing/Billing";
-import AddBilling from "../adminDashbord/pages/billing/AddBilling";
-import EditBilling from "../adminDashbord/pages/billing/EditBilling";
 import Orders from "../adminDashbord/pages/orders/Orders";
 import AddOrder from "../adminDashbord/pages/orders/AddOrder";
 import EditOrder from "../adminDashbord/pages/orders/EditOrder";
 import Reports from "../adminDashbord/pages/reports/Reports";
-import AddReport from "../adminDashbord/pages/reports/AddReport";
-import EditReport from "../adminDashbord/pages/reports/EditReport";
 import Categories from "../adminDashbord/pages/category/Categories";
-import AddCategory from "../adminDashbord/pages/category/AddCategory";
-import EditCategory from "../adminDashbord/pages/category/EditCategory";
 import ProductDetails from "../pages/ProductDetails";
-
-import useAuthStore from "../store/authStore";
-import { useEffect } from "react";
-import CustomerProfile from "../adminDashbord/components/CustomerProfile";
-
-const ProdectedRoute = ({ children }) => {
-
-  const { isAuthenticated, user } = useAuthStore();
-  if (!isAuthenticated) {
-    return <Navigate to="/" />;
-  }
-  if (!user.isVerified) {
-    return <Navigate to="/verifyEmail" />;
-  }
-
-  return children;
-};
-
-// redirect authenticated users to the home page
-const RedirectAuthenticatedUser = ({ children }) => {
-  const { isAuthenticated, user } = useAuthStore();
-
-  if (isAuthenticated && user.isVerified) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return children;
-};
-
-const Effect = () => {
-  const { checkAuth } = useAuthStore();
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-};
+import CustomerProfile from "../pages/CustomerProfile";
 
 const router = createBrowserRouter([
   {
@@ -83,11 +43,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <RedirectAuthenticatedUser>
+        element: 
             <Home />
-          </RedirectAuthenticatedUser>
-        ),
+        
       },
       {
         path: "/about",
@@ -200,14 +158,7 @@ const router = createBrowserRouter([
         path: "billing",
         element: <Billing />,
       },
-      {
-        path: "addBilling",
-        element: <AddBilling />,
-      },
-      {
-        path: "editBilling",
-        element: <EditBilling />,
-      },
+
       {
         path: "orders",
         element: <Orders />,
@@ -224,25 +175,10 @@ const router = createBrowserRouter([
         path: "report",
         element: <Reports />,
       },
-      {
-        path: "addReport",
-        element: <AddReport />,
-      },
-      {
-        path: "editReport",
-        element: <EditReport />,
-      },
+   
       {
         path: "categories",
         element: <Categories />,
-      },
-      {
-        path: "addCategory",
-        element: <AddCategory />,
-      },
-      {
-        path: "editCategory",
-        element: <EditCategory />,
       },
       {
         path: "settings",

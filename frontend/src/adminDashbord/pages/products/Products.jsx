@@ -8,7 +8,10 @@ import ReactPaginate from "react-paginate";
 const Products = () => {
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [productsPerPage] = useState(4); // Adjust this to how many products you want per page
+  const [productsPerPage] = useState(4);
+  const [filterValue, setFilterValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const { product, getProducts } = useProductStore();
 
@@ -24,6 +27,47 @@ const Products = () => {
     fetchProducts();
   }, [getProducts]);
 
+  // Filter products by category and search by subcategory
+  const filterProducts = () => {
+    if (!product) return []; // Ensure product is defined
+
+    let filteredProducts = product;
+
+    // Filter by category and subcategory
+    if (filterValue) {
+      const [category, subcategory] = filterValue.split("/");
+      filteredProducts = filteredProducts.filter((product) => {
+        if (category && !subcategory) {
+          return product.category === category;
+        }
+        if (category && subcategory) {
+          return (
+            product.category === category && product.subcategory === subcategory
+          );
+        }
+        return true;
+      });
+    }
+
+    // Search by product name (case-insensitive)
+    if (searchQuery) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return filteredProducts || [];
+  };
+
+  // Calculate the indices for products per page
+
+  const filteredProducts = filterProducts();
+  const indexOfLastProduct = (currentPage + 1) * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = Array.isArray(filteredProducts)
+    ? filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+    : [];
+
   const handleDelete = async (productId) => {
     try {
       await axios.delete(
@@ -36,13 +80,6 @@ const Products = () => {
     }
   };
 
-  // Calculate the indices for products per page
-  const indexOfLastProduct = (currentPage + 1) * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = (product || []).slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
   // Handle page click for pagination
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
@@ -54,6 +91,33 @@ const Products = () => {
         <h1 className="text-2xl font-bold text-center mb-4">Product List</h1>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}
+
+        {/* Filter and Search Section */}
+        <div className="mb-4 flex flex-col sm:flex-row gap-4">
+          {/* Category Dropdown */}
+          <select
+            value={selectedCategory}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setFilterValue(e.target.value); // Reset filter value when category changes
+            }}
+            className="p-2 border border-gray-300 rounded-md"
+          >
+            <option value="">All Categories</option>
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+            <option value="kids">Kids</option>
+          </select>
+
+          {/* Search by Subcategory */}
+          <input
+            type="text"
+            placeholder="Search by product name..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 border border-gray-300 rounded-md flex-grow"
+          />
+        </div>
 
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
@@ -75,6 +139,9 @@ const Products = () => {
                   Category
                 </th>
                 <th className="text-left py-3 px-4 font-medium text-gray-700">
+                  Subcategory
+                </th>
+                <th className="text-left py-3 px-4 font-medium text-gray-700">
                   Actions
                 </th>
               </tr>
@@ -91,8 +158,17 @@ const Products = () => {
                   </td>
                   <td className="py-3 px-4">{product.productName}</td>
                   <td className="py-3 px-4">${product.price.toFixed(2)}</td>
-                  <td className="py-3 px-4">{product.quantity}</td>
+                  <td className="py-3 px-4">
+                    <span
+                      className={`font-semibold ${
+                        product.quantity > 0 ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+                    </span>
+                  </td>{" "}
                   <td className="py-3 px-4">{product.category}</td>
+                  <td className="py-3 px-4">{product.subcategory}</td>
                   <td className="py-3 px-4">
                     <Link
                       to={`editProduct/${product._id}`}
@@ -118,7 +194,7 @@ const Products = () => {
           <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}
-            pageCount={Math.ceil(product?.length / productsPerPage)}
+            pageCount={Math.ceil(filteredProducts.length / productsPerPage)}
             onPageChange={handlePageClick}
             containerClassName={"flex items-center space-x-2"}
             pageClassName={"page-item"}
@@ -137,8 +213,8 @@ const Products = () => {
             breakLinkClassName={
               "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
             }
-            activeClassName={"active-page"} 
-            activeLinkClassName={"active-page-link"} 
+            activeClassName={"active-page"}
+            activeLinkClassName={"active-page-link"}
           />
         </div>
       </div>

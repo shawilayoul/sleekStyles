@@ -4,10 +4,10 @@ import useAuthStore from '../store/authStore';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const { signIn } = useAuthStore();
+  const { signIn ,error } = useAuthStore();
 
   const [role, setRole] = useState(''); 
-  const [error, setError] = useState('');
+  const [rolleError, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -27,7 +27,6 @@ const LoginPage = () => {
         // handle customer login logic
         navigate('/customerProfile');
       } else if (role === 'admin') {
-        // handle admin login logic
         navigate('/dashboard');
       } else {
         setError('Please select a role');
@@ -111,7 +110,7 @@ const LoginPage = () => {
         </form>
 
         <div>
-          {error && <p className="text-center text-red-500">{error}</p>}
+          {(error || rolleError) && <p className="text-center text-red-500">{error || error}</p>}
         </div>
 
         <div onClick={() => navigate("/signup")}>
