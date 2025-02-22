@@ -12,7 +12,7 @@ const About = () => {
           <img
             src={images.bolg4}
             alt="Contact Us"
-            className="w-full h-auto rounded-lg shadow-lg"
+            className="w-full h-[400px] rounded-lg shadow-lg"
           />
         </div>
 

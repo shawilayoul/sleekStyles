@@ -7,81 +7,80 @@ export const homeSlideData = [
     title: "Casual Comfort: The Classic T-Shirt",
     description:
       "Experience ultimate comfort and effortless style with our premium cotton t-shirts, perfect for any occasion. Shop now and enjoy free shipping on your first order!",
-    imgageLeft: images.tshirt1,
-    imageRight: images.tshirt1,
+    imgageLeft: images.mencloth3,
+    imageRight: images.mencloth3,
     cta: "Shop Now", // Add a call-to-action
   },
   {
     id: 2,
-    title: "Bold & Vibrant: The Red Statement Tee",
+    title: "Elegant Timekeeping: The Modern Watch",
     description:
-      "Make a statement with our eye-catching red t-shirt—bold, confident, and designed for those who stand out. Limited stock available—grab yours before it's gone!",
-    imgageLeft: images.tshirtRouge,
-    imageRight: images.tshirtRouge,
+      "Stay on time in style with our sleek and modern watches—perfect for both casual and formal occasions. Limited stock available—grab yours before it's gone!",
+    imgageLeft: images.watch1,
+    imageRight: images.watch2,
     cta: "Get Yours", // Add urgency
   },
   {
     id: 3,
-    title: "Timeless Elegance: The Black Tee",
+    title: "Chic & Comfortable: Women's Shoes",
     description:
-      "A wardrobe essential—our black t-shirt pairs seamlessly with any outfit, offering style and sophistication. Upgrade your wardrobe today!",
-    imgageLeft: images.tshirtNoir,
-    imageRight: images.tshirtNoir,
-    cta: "Upgrade Now", // Encourage action
+      "Step out in style with our trendy and comfortable women's shoes—designed for elegance and everyday wear. Upgrade your footwear collection today!",
+    imgageLeft: images.woemenShoes1,
+    imageRight: images.woemenShoes1,
+    cta: "Buy Now", // Encourage action
   },
   {
     id: 4,
-    title: "Sharp & Stylish: The Modern Suit",
+    title: "Functional Fashion: The Stylish Bag",
     description:
-      "Elevate your look with our finely tailored suit—perfect for formal occasions and business elegance. Discover the perfect fit for your next big event.",
-    imgageLeft: images.suit2,
-    imageRight: images.suit2,
+      "Carry your essentials in style with our versatile and chic bags—perfect for work, travel, or casual outings. Discover the perfect bag for your lifestyle.",
+    imgageLeft: images.bag1,
+    imageRight: images.bag2,
     cta: "Discover More", // Invite exploration
   },
   {
     id: 5,
-    title: "The Power Suit: Confidence in Every Stitch",
+    title: "Sharp & Stylish: Kids's Formal Wear",
     description:
-      "Command attention with our premium suit—crafted for those who lead with style and authority. Shop now and enjoy exclusive discounts!",
-    imgageLeft: images.suit4,
-    imageRight: images.suit4,
+      "Elevate your wardrobe with our premium men's formal wear—crafted for sophistication and confidence. Shop now and enjoy exclusive discounts!",
+    imgageLeft: images.kid1,
+    imageRight: images.kid1,
     cta: "Shop Exclusive", // Highlight exclusivity
   },
 ];
 
 /****shop slide data******/
 
-export const shopSlideDAta = [
+export const shopSlideData = [
   {
     id: 1,
-    title: "Discover Timeless Style with Our Classic Tees",
+    title: "Timeless Elegance: The Modern Watch",
     description:
-      "Elevate your everyday look with our versatile t-shirt collection. Perfectly designed to offer comfort without compromising on style, these tees are your new wardrobe staple.",
-    image: images.tshirt1,
+      "Stay on time in style with our sleek and modern watches—perfect for both casual and formal occasions. Elevate your look with this timeless accessory.",
+    image: images.watch2,
   },
   {
     id: 2,
-    title: "Bold and Modern: The Noir Collection",
+    title: "Chic and Stylish: The Trendy Hat",
     description:
-      "Make a statement with our sleek Noir t-shirt. Crafted for the bold and the daring, this piece combines minimalism with attitude, making it perfect for any occasion.",
-    image: images.tshirtNoir,
+      "Top off your outfit with our trendy hat collection. Designed for both fashion and function, these hats add a touch of sophistication to any look.",
+    image: images.hat,
   },
   {
     id: 3,
-    title: "Vibrant and Trendy: The Rouge Tee",
+    title: "Sharp and Versatile: Men's Casual Wear",
     description:
-      "Add a pop of color to your wardrobe with our Rouge t-shirt. Designed for those who want to stand out, this tee brings vibrant energy and unbeatable style to your day-to-day outfits.",
-    image: images.tshirtRouge,
+      "Upgrade your casual wardrobe with our modern men's clothing. Perfect for everyday wear, these pieces combine comfort and style effortlessly.",
+    image: images.mencloth3,
   },
   {
     id: 4,
-    title: "Effortless Elegance: The Sleek Tee",
+    title: "Elegant and Comfortable: Women's Shoes",
     description:
-      "Simplicity meets sophistication in our Sleek t-shirt. With its clean lines and high-quality fabric, this tee offers both style and comfort for a look that’s effortlessly chic.",
-    image: images.tshirt2,
+      "Step out in style with our chic women's shoes. Designed for elegance and comfort, these shoes are perfect for any occasion.",
+    image: images.woemenShoes1,
   },
 ];
-
 /*** blog post data ***/
 
 export const blogPost = [

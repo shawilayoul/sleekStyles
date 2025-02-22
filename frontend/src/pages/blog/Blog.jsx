@@ -29,7 +29,7 @@ const Blog = () => {
         <div className="w-full max-w-4xl mx-auto">
           <img
             className="w-full h-auto object-cover rounded-lg shadow-lg"
-            src={images.bolg2}
+            src={images.back1}
             alt="Blog Banner"
           />
         </div>

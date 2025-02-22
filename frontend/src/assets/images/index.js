@@ -56,6 +56,22 @@ import tshirtNoir from "./t-shirt-noir.png";
 import tshirtBlanc from "./t-shirt-white.png";
 import tshirtRouge from "./t-shirt-rouge.png";
 
+import woemenShoes1 from "./woemen-shoes1.jpg";
+import watch1 from "./watch1.jpg";
+import watch2 from "./watch2.jpg";
+import mencloth1 from "./mencloth.jpg";
+import mencloth2 from "./mencloth2.jpg";
+import mencloth3 from "./mencloth3.jpg";
+import mencloth4 from "./mencloth4.jpg";
+import hat from "./hat.jpg";
+import air2 from "./air2.png";
+import blazer2 from "./blazer2.png";
+import bag1 from "./bag1.jpg";
+import bag2 from "./bag3.jpg";
+import back1 from "./back1.jpg";
+import back2 from "./back2.webp";
+import back3 from "./back3.jpg";
+
 export const images = {
   boy1,
   boy2,
@@ -111,4 +127,19 @@ export const images = {
   tshirtNoir,
   tshirtBlanc,
   tshirtRouge,
+  woemenShoes1,
+  watch1,
+  watch2,
+  mencloth1,
+  mencloth2,
+  mencloth3,
+  mencloth4,
+  hat,
+  air2,
+  blazer2,
+  bag1,
+  bag2,
+  back1,
+  back2,
+  back3
 };
