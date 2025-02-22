@@ -51,7 +51,7 @@ export const homeSlideData = [
 
 /****shop slide data******/
 
-export const shopSlideData = [
+export const shopSlideDAta = [
   {
     id: 1,
     title: "Timeless Elegance: The Modern Watch",
