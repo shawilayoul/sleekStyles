@@ -252,10 +252,10 @@ const Header = () => {
                 {checkOutModel && (
                   <form
                     onSubmit={handleStripePayment}
-                    className="ChackoutForm absolute top-full right-0 bg-white shadow-lg rounded-lg mt-4 w-80 md:w-96 p-4 space-y-1"
+                    className="ChackoutForm absolute top-full right-0 bg-white shadow-lg rounded-lg mt-3 w-80 md:w-96 p-4 "
                   >
                     {/* Customer Name Field */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">Customer Name</p>
                       <input
                         type="text"
@@ -267,7 +267,7 @@ const Header = () => {
                       />
                     </div>
                     {/* Email Field */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">E-mail</p>
                       <input
                         type="email"
@@ -280,7 +280,7 @@ const Header = () => {
                     </div>
 
                     {/* Card Information */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">Card Information</p>
                       <CardElement
                         className="border p-2 rounded-md border-gray-300"
@@ -289,7 +289,7 @@ const Header = () => {
                     </div>
 
                     {/* Billing Address - Street */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">Street Address</p>
                       <input
                         type="text"
@@ -302,7 +302,7 @@ const Header = () => {
                     </div>
 
                     {/* Billing Address - City */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">City</p>
                       <input
                         type="text"
@@ -315,7 +315,7 @@ const Header = () => {
                     </div>
 
                     {/* Billing Address - State/Province */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">State/Province</p>
                       <input
                         type="text"
@@ -328,7 +328,7 @@ const Header = () => {
                     </div>
 
                     {/* Phone Number */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">Phone Number</p>
                       <input
                         type="tel"
@@ -341,7 +341,7 @@ const Header = () => {
                     </div>
 
                     {/* Postal Code */}
-                    <div className="space-y-1">
+                    <div className="">
                       <p className="font-bold">Postal Code</p>
                       <input
                         type="text"
@@ -354,7 +354,7 @@ const Header = () => {
                     </div>
 
                     {/* Terms and Conditions */}
-                    <div className="space-y-1 flex items-center">
+                    <div className=" flex items-center">
                       <input
                         type="checkbox"
                         id="terms"

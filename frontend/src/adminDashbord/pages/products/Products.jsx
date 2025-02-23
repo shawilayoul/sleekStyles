@@ -190,28 +190,30 @@ const Products = () => {
         </div>
 
         {/* Pagination */}
-        <div className="mt-4 flex justify-center items-center space-x-2">
+        <div className="mt-4 flex justify-center items-center">
           <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}
             pageCount={Math.ceil(filteredProducts.length / productsPerPage)}
             onPageChange={handlePageClick}
-            containerClassName={"flex items-center space-x-2"}
+            containerClassName={
+              "flex flex-wrap justify-center items-center gap-2"
+            }
             pageClassName={"page-item"}
             pageLinkClassName={
-              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+              "px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 text-sm sm:text-base"
             }
             previousClassName={"page-item"}
             previousLinkClassName={
-              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+              "px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 text-sm sm:text-base"
             }
             nextClassName={"page-item"}
             nextLinkClassName={
-              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+              "px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 text-sm sm:text-base"
             }
             breakClassName={"page-item"}
             breakLinkClassName={
-              "px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600"
+              "px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 text-sm sm:text-base"
             }
             activeClassName={"active-page"}
             activeLinkClassName={"active-page-link"}

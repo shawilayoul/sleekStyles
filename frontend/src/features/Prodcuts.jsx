@@ -11,7 +11,7 @@ const Products = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8; 
+  const productsPerPage = 8;
 
   // Handle category filter change
   const handleSelectedFilterChange = (e) => {
@@ -64,7 +64,8 @@ const Products = () => {
       </h3>
       <section className="products">
         {/* Category Filter */}
-        <div className="filter flex justify-center space-x-4 mb-6">
+        {/* Category Filter */}
+        <div className="filter flex flex-wrap justify-center gap-2 mb-6">
           {["all", "men", "women", "kids"].map((filter) => {
             // Check for valid filter value
             if (!filter || typeof filter !== "string") return null;
@@ -74,7 +75,7 @@ const Products = () => {
                 key={filter}
                 value={filter}
                 onClick={handleSelectedFilterChange}
-                className={`px-4 py-2 rounded-lg font-semibold ${
+                className={`px-3 py-2 rounded-lg font-semibold text-sm sm:text-base ${
                   selectedFilter === filter ? "bg-green-500" : "bg-blue-800"
                 } text-white`}
               >
@@ -86,13 +87,13 @@ const Products = () => {
 
         {/* Subcategory Filter */}
         {selectedFilter !== "all" && (
-          <div className="filter flex justify-center space-x-4 mb-6">
+          <div className="filter flex flex-wrap justify-center gap-2 mb-6">
             {getSubcategories().map((sub) => (
               <button
                 key={sub}
                 value={sub.toLowerCase()}
                 onClick={handleSelectedSubFilterChange}
-                className={`px-4 py-2 rounded-lg font-semibold ${
+                className={`px-3 py-2 rounded-lg font-semibold text-sm sm:text-base ${
                   selectedSubFilter === sub.toLowerCase()
                     ? "bg-green-500"
                     : "bg-blue-800"
@@ -131,10 +132,11 @@ const Products = () => {
         </div>
 
         {/* Pagination controls */}
-        <div className="pagination flex justify-center items-center space-x-4 mt-6">
+        {/* Pagination controls */}
+        <div className="pagination flex flex-wrap justify-center items-center gap-2 mt-6">
           {/* Previous button */}
           <button
-            className="px-4 py-2 bg-blue-800 text-white rounded-lg"
+            className="px-3 py-2 bg-blue-800 text-white rounded-lg text-sm sm:text-base"
             onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -145,7 +147,7 @@ const Products = () => {
           {[...Array(totalPages).keys()].map((number) => (
             <button
               key={number}
-              className={`px-4 py-2 rounded-lg font-semibold ${
+              className={`px-3 py-2 rounded-lg font-semibold text-sm sm:text-base ${
                 currentPage === number + 1 ? "bg-green-500" : "bg-blue-800"
               } text-white`}
               onClick={() => handlePageChange(number + 1)}
@@ -156,7 +158,7 @@ const Products = () => {
 
           {/* Next button */}
           <button
-            className="px-4 py-2 bg-blue-800 text-white rounded-lg"
+            className="px-3 py-2 bg-blue-800 text-white rounded-lg text-sm sm:text-base"
             onClick={() =>
               currentPage < totalPages && handlePageChange(currentPage + 1)
             }
