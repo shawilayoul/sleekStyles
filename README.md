@@ -51,10 +51,10 @@ Create a .env file in both client and server directories with your Firebase and 
 
 4. **Run the project**
 
-# In the server directory
+**In the server directory**
 npm run dev
 
-# In the client directory
+**In the client directory**
 npm start
 
 ## 📄 License
