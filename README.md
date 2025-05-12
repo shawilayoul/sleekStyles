@@ -38,18 +38,18 @@ This project is a feature-rich, responsive clothing e-commerce website designed 
    ```bash
    https://github.com/shawilayoul/sleekStyles.git
    cd your-repo
-2.Install dependencies
+2. **Install dependencies**
 cd client
 npm install
 
 cd ../server
 npm install
 
-3.Add environment variables
+3. **Add environment variables**
 
 Create a .env file in both client and server directories with your Firebase and MongoDB configurations.
 
-4.Run the project
+4. **Run the project**
 
 # In the server directory
 npm run dev
@@ -57,7 +57,5 @@ npm run dev
 # In the client directory
 npm start
 
-📸 Screenshots
-
-📄 License
+## 📄 License
    This project is open-source and available under the MIT License.
