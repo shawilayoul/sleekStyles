@@ -1,14 +1,14 @@
-# 🛍️ Clothing E-Commerce Website
+# Clothing E-Commerce Website
 
 **Live Demo**: [https://sleekstyle.onrender.com/](https://sleekstyle.onrender.com/)
 
 A full-stack modern clothing e-commerce platform built with **React**, **Tailwind CSS**, **Node.js**, **Express**, **MongoDB**, and **Firebase**.
 
-## 🚀 Project Overview
+## Project Overview
 
 This project is a feature-rich, responsive clothing e-commerce website designed to deliver a seamless shopping experience for customers and efficient management tools for administrators.
 
-### 🔧 Key Features
+### Key Features
 
 - **Modern UI/UX**: Built with React and Tailwind CSS for a sleek, responsive, and intuitive interface.
 - **Secure Backend**: Node.js and Express power a robust backend API.
@@ -18,21 +18,21 @@ This project is a feature-rich, responsive clothing e-commerce website designed 
 - **Seller Access Control**: Sellers must request permission to access the admin dashboard. Only after admin approval can they list and manage products.
 - **Scalable Architecture**: Built for future expansion and easy maintenance.
 
-### 💡 Seller Access Flow
+### Seller Access Flow
 
 1. Seller registers an account on the platform.
 2. Seller submits a request to access the admin dashboard.
 3. Admin reviews the request and approves or rejects it.
 4. Approved sellers can add, edit, or delete their own products through the dashboard.
 
-## 🛠️ Tech Stack
+## 🛠Tech Stack
 
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Image Storage**: Firebase
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 1. **Clone the repository**
    ```bash
